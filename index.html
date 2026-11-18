@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="artifact-type" content="narrative">
+<meta name="design-style" content="kiln">
+<title>臺灣閩南語羅馬字拼音系統（台羅拼音）考點複習與百題測驗</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+
+  /* 1. Kiln palette */
+  --background: #f4f1ea;
+  --surface-container-low: #ebe6db;
+  --surface-container: #e3ddd0;
+  --surface-container-high: #d9d1c2;
+  --surface-elevated: #faf8f3;
+
+  --on-surface: #1c1b18;
+  --on-surface-variant: #5e5a51;
+
+  --outline: #1c1b18;
+  --outline-variant: #d2cbbd;
+
+  --primary: #1c1b18;
+  --on-primary: #f4f1ea;
+  --primary-container: #ebe6db;
+  --on-primary-container: #1c1b18;
+  --secondary: #4a5d46;
+  --secondary-soft: #dce3d9;
+  --tertiary: #9e3b2b;
+  --tertiary-soft: #f2deda;
+  --error: #9e2a22;
+  --on-error: #f4f1ea;
+
+  --data-1: #4a5d46;
+  --data-2: #9e3b2b;
+  --data-3: #1c1b18;
+  --data-4: #8a6f48;
+  --data-context: #c7bfb0;
+
+  /* 2. Typography (Noto Sans TC first for zh-Hant) */
+  --font-headline: 'Noto Sans TC', 'Shippori Mincho', serif;
+  --font-body: 'Noto Sans TC', 'Plus Jakarta Sans', sans-serif;
+  --font-label: 'Geist Mono', 'Noto Sans TC', monospace;
+
+  /* 3. Radii & rules */
+  --rounded: 0.125rem;
+  --rounded-lg: 0.125rem;
+  --rounded-full: 0.125rem;
+  --rule-sumi-left: 2px solid var(--outline);
+  --rule-moss-left: 3px solid var(--secondary);
+  --rule-cinnabar-left: 3px solid var(--tertiary);
+  --rule-sumi: 1px solid var(--outline);
+  --rule-linen: 1px solid var(--outline-variant);
+  --label-tracking: 0.12em;
+
+  /* 4. Shared tokens */
+  --positive: #3b5e36;
+  --positive-soft: #e2ebe0;
+  --warning: #8a6220;
+  --warning-soft: #f1e6cf;
+  --focus: #1c1b18;
+
+  /* Narrative Type Scale */
+  --display-size: clamp(2.1rem, 1.4rem + 2.8vw, 3.35rem);
+  --headline-size: clamp(1.45rem, 1.15rem + 1.2vw, 2.05rem);
+  --subhead-size: clamp(1.125rem, 1.02rem + 0.45vw, 1.35rem);
+  --body-size: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+  --label-size: 0.75rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  overflow-x: clip;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+header { position: static !important; }
+button, input, select, textarea { font-family: inherit; }
+
+.page-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+}
+.page-shell * { min-width: 0; }
+
+/* Masthead / Hero */
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-lg);
+  align-items: start;
+  padding-bottom: var(--space-xl);
+  border-bottom: var(--rule-sumi);
+}
+.kicker {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  color: var(--secondary);
+  letter-spacing: var(--label-tracking);
+  margin: 0 0 var(--space-sm) 0;
+}
+.display-title {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: var(--display-size);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--on-surface);
+  margin: 0;
+}
+.subhead-moss {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: var(--subhead-size);
+  color: var(--secondary);
+  line-height: 1.45;
+  margin: var(--space-sm) 0 0 0;
+  max-width: 62ch;
+}
+.seal-stamp {
+  border: 1px solid var(--tertiary);
+  color: var(--tertiary);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  padding: var(--space-sm) var(--space-xs);
+  writing-mode: vertical-rl;
+  align-self: start;
+  user-select: none;
+}
+
+/* Quick Chapter Jump Strip & Stat Strip */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+.washi-card {
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  border-radius: var(--rounded);
+  padding: var(--space-md) var(--space-lg);
+}
+.washi-card .card-label {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  color: var(--on-surface-variant);
+  letter-spacing: 0.04em;
+  display: block;
+}
+.washi-card .card-value {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: var(--headline-size);
+  line-height: 1.2;
+  color: var(--on-surface);
+  margin: var(--space-xs) 0;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.washi-card .card-note {
+  color: var(--secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.chapter-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  padding: var(--space-md) 0;
+  border-top: var(--rule-linen);
+  border-bottom: var(--rule-linen);
+}
+.chapter-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  min-height: 44px;
+  text-decoration: none;
+  color: var(--on-surface);
+  background: var(--surface-container-low);
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.chapter-link:hover {
+  background: var(--surface-container);
+  border-color: var(--outline);
+}
+.chapter-link:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Section Layout */
+.section-block {
+  padding: var(--space-2xl) 0;
+  border-bottom: var(--rule-linen);
+}
+.section-block:last-of-type {
+  border-bottom: none;
+}
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+.section-index {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  color: var(--tertiary);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.section-title {
+  font-family: var(--font-headline);
+  font-size: var(--headline-size);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: var(--space-xs) 0 0 0;
+}
+.section-lede {
+  color: var(--on-surface-variant);
+  max-width: 65ch;
+  margin: var(--space-sm) 0 var(--space-lg) 0;
+}
+
+/* Interactive Section 1: Syllable + 18 Initials */
+.split-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+.syllable-box {
+  background: var(--surface-elevated);
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+}
+.syllable-formula {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin: var(--space-md) 0;
+}
+.syllable-slot {
+  background: var(--surface-container-low);
+  border-top: 2px solid var(--outline);
+  padding: var(--space-md);
+  text-align: left;
+}
+.syllable-slot strong {
+  display: block;
+  font-size: 1.125rem;
+  color: var(--on-surface);
+}
+.syllable-slot span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--secondary);
+  margin-top: var(--space-xs);
+}
+.consonant-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+.btn-chip {
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  border: var(--rule-linen);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  border-radius: var(--rounded);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.btn-chip:hover {
+  background: var(--surface-container);
+}
+.btn-chip.is-active {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+.btn-chip:focus-visible, .btn-primary:focus-visible, .btn-secondary:focus-visible, .option-btn:focus-visible, .tone-node-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.consonant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: var(--space-sm);
+}
+.phoneme-btn {
+  min-height: 64px;
+  padding: var(--space-sm);
+  background: var(--surface-elevated);
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+}
+.phoneme-btn:hover {
+  background: var(--surface-container-low);
+}
+.phoneme-btn.is-selected {
+  background: var(--surface-container-low);
+  box-shadow: inset 3px 0 0 var(--tertiary), 0 0 0 1px var(--outline);
+}
+.phoneme-btn .sym {
+  font-family: var(--font-label);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+.phoneme-btn .cat-tag {
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+}
+
+.inspector-panel {
+  background: var(--surface-container-low);
+  border-left: var(--rule-cinnabar-left);
+  padding: var(--space-lg);
+  border-radius: var(--rounded);
+}
+.inspector-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  border-bottom: var(--rule-linen);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+.inspector-symbol {
+  font-family: var(--font-label);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--tertiary);
+}
+.inspector-meta {
+  font-size: 0.875rem;
+  color: var(--secondary);
+  font-weight: 600;
+}
+.detail-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-sm);
+}
+.detail-list li {
+  font-size: 0.95rem;
+}
+.detail-list strong {
+  color: var(--on-surface);
+}
+
+/* Section 2: 72 Finals Explorer */
+.finals-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+.finals-cat-btn {
+  text-align: left;
+  padding: var(--space-md);
+  min-height: 44px;
+  background: var(--surface-container-low);
+  border: var(--rule-linen);
+  border-left: var(--rule-sumi-left);
+  border-radius: var(--rounded);
+  cursor: pointer;
+  transition: background-color var(--dur-micro) var(--ease-out);
+}
+.finals-cat-btn:hover {
+  background: var(--surface-container);
+}
+.finals-cat-btn.is-active {
+  background: var(--surface-elevated);
+  border-left: 3px solid var(--tertiary);
+  box-shadow: 0 0 0 1px var(--outline);
+}
+.finals-cat-btn .fc-title {
+  display: block;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+.finals-cat-btn .fc-count {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.8125rem;
+  color: var(--secondary);
+  margin-top: var(--space-xs);
+}
+
+.finals-detail-box {
+  background: var(--surface-elevated);
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+}
+.finals-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: var(--space-md) 0;
+}
+.final-pill {
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--surface-container-low);
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  color: var(--on-surface);
+}
+.final-pill.is-key {
+  background: var(--secondary-soft);
+  border-color: var(--secondary);
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.entering-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+.entering-card {
+  background: var(--surface-container-low);
+  border-top: 2px solid var(--secondary);
+  padding: var(--space-md);
+}
+.entering-card .ec-head {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--tertiary);
+}
+.entering-card p {
+  margin: var(--space-xs) 0 0 0;
+  font-size: 0.9rem;
+  color: var(--on-surface-variant);
+}
+
+/* Section 3: 8 Tones & Sandhi Lab */
+.tones-table-wrap {
+  overflow-x: auto;
+  margin-bottom: var(--space-xl);
+}
+.kiln-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.kiln-table th {
+  font-family: var(--font-label);
+  font-size: 0.8125rem;
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  border-top: var(--rule-sumi);
+  border-bottom: var(--rule-sumi);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+.kiln-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: var(--rule-linen);
+  vertical-align: top;
+}
+.kiln-table tr.is-merged td {
+  background: var(--surface-container-low);
+  color: var(--on-surface-variant);
+}
+.mono-cell {
+  font-family: var(--font-label);
+  font-weight: 600;
+}
+
+.sandhi-lab {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+.ring-panel {
+  background: var(--surface-elevated);
+  border: var(--rule-linen);
+  padding: var(--space-lg);
+  border-radius: var(--rounded);
+}
+.ring-svg-wrap {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.svg-ring-line {
+  fill: none;
+  stroke: var(--outline-variant);
+  stroke-width: 1.5;
+}
+.svg-ring-arrow {
+  fill: none;
+  stroke: var(--secondary);
+  stroke-width: 2;
+}
+.svg-ring-arrow.is-active {
+  stroke: var(--tertiary);
+  stroke-width: 3;
+}
+.svg-node-circle {
+  fill: var(--surface-container-low);
+  stroke: var(--outline);
+  stroke-width: 1.5;
+  cursor: pointer;
+}
+.svg-node-circle.is-source {
+  fill: var(--tertiary);
+  stroke: var(--tertiary);
+}
+.svg-node-circle.is-target {
+  fill: var(--secondary);
+  stroke: var(--secondary);
+}
+.svg-node-text {
+  font-family: var(--font-label);
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--on-surface);
+  pointer-events: none;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+.svg-node-text.is-light {
+  fill: var(--on-primary);
+}
+
+.sandhi-controls {
+  display: grid;
+  gap: var(--space-md);
+}
+.tone-selector-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+.tone-node-btn {
+  min-width: 56px;
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--surface-container-low);
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  font-family: var(--font-label);
+  font-weight: 600;
+  cursor: pointer;
+}
+.tone-node-btn.is-active {
+  background: var(--tertiary);
+  color: var(--on-primary);
+  border-color: var(--tertiary);
+}
+
+.sandhi-result-card {
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  padding: var(--space-md) var(--space-lg);
+}
+.sandhi-flow-line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  font-family: var(--font-headline);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+.badge-tag {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  padding: 2px var(--space-sm);
+  border: var(--rule-linen);
+  background: var(--surface-elevated);
+  color: var(--secondary);
+}
+.a-word-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+.a-word-btn {
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-sm);
+  text-align: left;
+  background: var(--surface-elevated);
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+.a-word-btn:hover { background: var(--surface-container); }
+.a-word-btn.is-active {
+  background: var(--secondary-soft);
+  border-color: var(--secondary);
+}
+
+/* Section 4: 100-Question Practice Arena */
+.quiz-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-md);
+  align-items: end;
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+.quiz-filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: end;
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.field-label {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 600;
+  color: var(--on-surface-variant);
+}
+.kiln-select {
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-xl) var(--space-xs) var(--space-sm);
+  background: var(--surface-elevated);
+  color: var(--on-surface);
+  border: var(--rule-sumi);
+  border-radius: var(--rounded);
+  font-size: 0.9375rem;
+}
+.btn-primary {
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-lg);
+  background: var(--primary);
+  color: var(--on-primary);
+  border: var(--rule-sumi);
+  border-radius: var(--rounded);
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary:hover { opacity: 0.9; }
+.btn-secondary {
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-md);
+  background: var(--surface-elevated);
+  color: var(--on-surface);
+  border: var(--rule-sumi);
+  border-radius: var(--rounded);
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn-secondary:hover { background: var(--surface-container); }
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+.stat-mini {
+  background: var(--surface-elevated);
+  border: var(--rule-linen);
+  padding: var(--space-sm) var(--space-md);
+}
+.stat-mini span {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+}
+.stat-mini strong {
+  font-family: var(--font-headline);
+  font-size: 1.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.quiz-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+.question-card {
+  background: var(--surface-elevated);
+  border: var(--rule-linen);
+  border-left: var(--rule-sumi-left);
+  padding: var(--space-lg);
+  border-radius: var(--rounded);
+}
+.q-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: var(--rule-linen);
+}
+.q-num {
+  font-family: var(--font-label);
+  font-weight: 600;
+  color: var(--tertiary);
+}
+.q-cat {
+  font-size: 0.8125rem;
+  color: var(--secondary);
+  font-weight: 600;
+}
+.q-prompt {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0 0 var(--space-lg) 0;
+}
+.options-stack {
+  display: grid;
+  gap: var(--space-sm);
+}
+.option-btn {
+  min-height: 48px;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface-container-low);
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  text-align: left;
+  font-size: 1rem;
+  color: var(--on-surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  transition: background-color var(--dur-micro) var(--ease-out);
+}
+.option-btn:hover:not(:disabled) {
+  background: var(--surface-container);
+}
+.option-btn:disabled { cursor: default; }
+.option-btn.is-correct {
+  background: var(--positive-soft);
+  border-color: var(--positive);
+  box-shadow: inset 3px 0 0 var(--positive);
+}
+.option-btn.is-wrong {
+  background: var(--tertiary-soft);
+  border-color: var(--error);
+  box-shadow: inset 3px 0 0 var(--error);
+}
+.opt-key {
+  font-family: var(--font-label);
+  font-weight: 600;
+  min-width: 24px;
+}
+
+.feedback-banner {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--rounded);
+  background: var(--surface-container-low);
+  border-left: 3px solid var(--secondary);
+}
+.feedback-banner.is-correct {
+  background: var(--positive-soft);
+  border-left-color: var(--positive);
+}
+.feedback-banner.is-wrong {
+  background: var(--tertiary-soft);
+  border-left-color: var(--error);
+}
+.q-nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.matrix-panel {
+  background: var(--surface-container-low);
+  border: var(--rule-linen);
+  padding: var(--space-md);
+  border-radius: var(--rounded);
+}
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  max-height: 410px;
+  overflow-y: auto;
+  margin-top: var(--space-sm);
+  padding: 2px;
+}
+.q-dot {
+  min-height: 36px;
+  border: var(--rule-linen);
+  background: var(--surface-elevated);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  cursor: pointer;
+  border-radius: var(--rounded);
+}
+.q-dot.is-current {
+  border-color: var(--outline);
+  box-shadow: 0 0 0 1px var(--outline);
+  font-weight: 700;
+}
+.q-dot.is-ok {
+  background: var(--positive-soft);
+  border-color: var(--positive);
+  color: var(--positive);
+}
+.q-dot.is-bad {
+  background: var(--tertiary-soft);
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.empty-state {
+  padding: var(--space-xl);
+  text-align: left;
+  background: var(--surface-container-low);
+  border-left: var(--rule-cinnabar-left);
+}
+
+.site-footer {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: var(--rule-sumi);
+  color: var(--on-surface-variant);
+  font-size: 0.875rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+@media (max-width: 860px) {
+  .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .split-layout, .sandhi-lab, .quiz-workspace { grid-template-columns: 1fr; }
+  .entering-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .page-shell { padding: var(--space-lg) var(--space-md); }
+  .masthead { grid-template-columns: 1fr; }
+  .seal-stamp { writing-mode: horizontal-tb; justify-self: start; }
+  .overview-grid, .stats-bar, .syllable-formula, .entering-grid { grid-template-columns: 1fr; }
+  .quiz-toolbar { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page-shell">
+
+  <header class="masthead">
+    <div>
+      <p class="kicker">台羅拼音系統 · 核心考點複習手冊與百題實戰題庫</p>
+      <h1 class="display-title">臺灣閩南語羅馬字拼音系統</h1>
+      <p class="subhead-moss">從音節結構、十七個輔音聲母與零聲母、七十二個韻母分類，到八聲七調、一般環狀變調與「仔」前變調規則的完整考點梳理。</p>
+    </div>
+    <div class="seal-stamp" aria-hidden="true">台羅考點輯要</div>
+  </header>
+
+  <section class="overview-grid" aria-label="系統總覽數據">
+    <div class="washi-card">
+      <span class="card-label">SYLLABLE STRUCTURE</span>
+      <div class="card-value">3 要素</div>
+      <p class="card-note">聲母 ＋ 韻母 ＋ 聲調</p>
+    </div>
+    <div class="washi-card">
+      <span class="card-label">INITIALS · 6 類部位</span>
+      <div class="card-value">17＋1</div>
+      <p class="card-note">17 輔音聲母 ＋ 1 零聲母，共 18 個</p>
+    </div>
+    <div class="washi-card">
+      <span class="card-label">FINALS · 5 大韻類</span>
+      <div class="card-value">72 個</div>
+      <p class="card-note">元音、鼻化、鼻音、入聲、聲化</p>
+    </div>
+    <div class="washi-card">
+      <span class="card-label">TONES · 獅虎豹鱉猴狗象鹿</span>
+      <div class="card-value">8聲7調</div>
+      <p class="card-note">第 2、6 聲同調合併標記</p>
+    </div>
+  </section>
+
+  <nav class="chapter-nav" aria-label="章節快速跳轉">
+    <a class="chapter-link" href="#sec-initials"><i data-lucide="layers" width="16" height="16"></i> 一、音節結構與 18 聲母</a>
+    <a class="chapter-link" href="#sec-finals"><i data-lucide="grid" width="16" height="16"></i> 二、五大類 72 韻母解析</a>
+    <a class="chapter-link" href="#sec-tones"><i data-lucide="refresh-cw" width="16" height="16"></i> 三、八聲七調與變調模擬器</a>
+    <a class="chapter-link" href="#sec-quiz"><i data-lucide="check-square" width="16" height="16"></i> 四、100 題精選實戰測驗</a>
+  </nav>
+
+  <!-- SECTION 1: SYLLABLE & INITIALS -->
+  <section class="section-block" id="sec-initials">
+    <div class="section-head">
+      <div>
+        <span class="section-index">PART 01 · 音節結構與聲母發音部位</span>
+        <h2 class="section-title">音節由三要素構成，17 個輔音聲母與零聲母分為 6 種部位</h2>
+      </div>
+    </div>
+    <p class="section-lede">台語每一個音節都包含「聲母、韻母、聲調」三者。點選下方發音部位篩選或任一聲母方塊，檢視對應的發音器官位置、氣流路徑與高頻例字考點。</p>
+
+    <div class="split-layout">
+      <div>
+        <div class="syllable-box">
+          <span class="field-label">音節結構拆解公式（例：豬 ti¹ / 金 kim¹）</span>
+          <div class="syllable-formula">
+            <div class="syllable-slot">
+              <strong>聲母（字頭）</strong>
+              <span>17 輔音 ＋ 1 零聲母，分 6 類發音部位</span>
+            </div>
+            <div class="syllable-slot">
+              <strong>韻母（字腹＋字尾）</strong>
+              <span>共 72 個，含介音、主要元音與韻尾</span>
+            </div>
+            <div class="syllable-slot">
+              <strong>聲調（音高走勢）</strong>
+              <span>8 聲 7 調，依詞彙位置區分原調與變調</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-lg);">
+          <div class="consonant-filter-row" role="group" aria-label="聲母部位篩選">
+            <button type="button" class="btn-chip is-active" onclick="filterInitials('all', this)">全部 (18)</button>
+            <button type="button" class="btn-chip" onclick="filterInitials('雙唇音', this)">雙唇音 (4)</button>
+            <button type="button" class="btn-chip" onclick="filterInitials('舌尖音', this)">舌尖音 (4)</button>
+            <button type="button" class="btn-chip" onclick="filterInitials('舌根音', this)">舌根音 (4)</button>
+            <button type="button" class="btn-chip" onclick="filterInitials('舌齒音', this)">舌齒音 (4)</button>
+            <button type="button" class="btn-chip" onclick="filterInitials('喉音', this)">喉音 (1)</button>
+            <button type="button" class="btn-chip" onclick="filterInitials('零聲母', this)">零聲母 (1)</button>
+          </div>
+          <div id="consonant-grid" class="consonant-grid"></div>
+        </div>
+      </div>
+
+      <aside class="inspector-panel" id="initial-inspector" aria-live="polite">
+        <div class="inspector-head">
+          <span class="inspector-symbol" id="ins-sym">p</span>
+          <span class="inspector-meta" id="ins-cat">雙唇音（合唇音）</span>
+        </div>
+        <ul class="detail-list">
+          <li><strong>同組聲母：</strong><span id="ins-group">p, ph, m, b</span></li>
+          <li><strong>發音部位與動作：</strong><span id="ins-mech">雙唇合起來擋住氣流後打開（不送氣清音）。</span></li>
+          <li><strong>氣流路徑：</strong><span id="ins-air">主要經由喙空（口腔）爆破出氣。</span></li>
+          <li><strong>考點提示與例字：</strong><span id="ins-note">「豹 pà」屬於第 3 聲；注意 m 與 ng 才是鼻腔出氣。</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- SECTION 2: 72 FINALS -->
+  <section class="section-block" id="sec-finals">
+    <div class="section-head">
+      <div>
+        <span class="section-index">PART 02 · 韻母系統五大分類（共 72 個）</span>
+        <h2 class="section-title">五大韻母類別各司其職：從單元音到短促急停的入聲韻</h2>
+      </div>
+    </div>
+    <p class="section-lede">簡報將台語 72 個韻母分為「元音韻母、鼻化元音、鼻音韻母、入聲韻母、聲化韻母」五大類（注意「輕聲韻母」並非五大類之一）。切換下方類別檢視核心組成與發音口訣。</p>
+
+    <div class="finals-cat-grid" role="group" aria-label="韻母類別切換">
+      <button type="button" class="finals-cat-btn is-active" onclick="selectFinalCategory('vowel', this)">
+        <span class="fc-title">1. 元音韻母（單元音＋複元音）</span>
+        <span class="fc-count">6 個單元音 · 複元音組合</span>
+      </button>
+      <button type="button" class="finals-cat-btn" onclick="selectFinalCategory('nasalized', this)">
+        <span class="fc-title">2. 鼻化元音（標記 -nn）</span>
+        <span class="fc-count">共 12 個 · 口鼻同時出氣</span>
+      </button>
+      <button type="button" class="finals-cat-btn" onclick="selectFinalCategory('nasal', this)">
+        <span class="fc-title">3. 鼻音韻母（-m / -n / -ng）</span>
+        <span class="fc-count">-m 共 4 個 · 3 種鼻輔音尾</span>
+      </button>
+      <button type="button" class="finals-cat-btn" onclick="selectFinalCategory('entering', this)">
+        <span class="fc-title">4. 入聲韻母（-h / -p / -t / -k）</span>
+        <span class="fc-count">音短閣急停 · 第 4、8 聲專屬</span>
+      </button>
+      <button type="button" class="finals-cat-btn" onclick="selectFinalCategory('syllabic', this)">
+        <span class="fc-title">5. 聲化韻母（m / ng）</span>
+        <span class="fc-count">2 個自成音節鼻音</span>
+      </button>
+    </div>
+
+    <div class="finals-detail-box" id="finals-detail-box" aria-live="polite">
+      <h3 id="fc-detail-title" style="margin:0 0 var(--space-xs) 0;">元音韻母（單元音與複元音）</h3>
+      <p id="fc-detail-desc" style="margin:0; color: var(--on-surface-variant);"></p>
+      <div class="finals-tags-wrap" id="fc-tags"></div>
+      <p id="fc-detail-tip" style="margin:0; font-size:0.9375rem; color: var(--secondary); font-weight:500;"></p>
+    </div>
+
+    <div class="entering-grid" aria-label="四種入聲結尾發音動作對照">
+      <div class="entering-card">
+        <span class="ec-head">-h 入聲（喉塞）</span>
+        <p>嘴微微仔褫開（稍微張開），氣流在喉部頓住。例：鱉 pih、鴨 ah。</p>
+      </div>
+      <div class="entering-card">
+        <span class="ec-head">-p 入聲（雙唇）</span>
+        <p>發音最後嘴唇收束合起來。例：翕相機 hip-siōng-ki、葉 hio̍h/ia̍p。</p>
+      </div>
+      <div class="entering-card">
+        <span class="ec-head">-t 入聲（舌尖）</span>
+        <p>舌尖向上頂住上齒齦收尾。例：沃水 at-tsuí（簡報歸為 t 入聲）、筆 pit。</p>
+      </div>
+      <div class="entering-card">
+        <span class="ec-head">-k 入聲（舌根）</span>
+        <p>喉嚨出現「束喉現象」，舌根塞住。例：鹿 lo̍k、郵局 iû-kio̍k。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: 8 TONES & SANDHI -->
+  <section class="section-block" id="sec-tones">
+    <div class="section-head">
+      <div>
+        <span class="section-index">PART 03 · 8 聲 7 調與雙重變調機制</span>
+        <h2 class="section-title">一般連讀與「仔」前變調：先辨情境，再查聲調</h2>
+      </div>
+    </div>
+    <p class="section-lede">台語聲調屬於相對音高（因人而異略略仔差別）。因第 2 聲與第 6 聲發音相同合為一調，故稱「8 聲 7 調」。以下整合「獅虎豹鱉猴狗象鹿」原調表、互動式環狀變調圖與「仔」前變調實例。</p>
+
+    <div class="tones-table-wrap">
+      <table class="kiln-table">
+        <thead>
+          <tr>
+            <th>調序</th>
+            <th>代表字</th>
+            <th>台羅範例</th>
+            <th>調類性質</th>
+            <th>一般連讀變調</th>
+            <th>關鍵考點備註</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono-cell">第 1 聲</td>
+            <td><strong>獅</strong></td>
+            <td class="mono-cell">sai</td>
+            <td>陰平（非入聲）</td>
+            <td class="mono-cell">1 → 7</td>
+            <td>豬仔(1-2→7-2)、雞公(1-1→7-1)、烏鴉(1-1→7-1)</td>
+          </tr>
+          <tr>
+            <td class="mono-cell">第 2 聲</td>
+            <td><strong>虎</strong></td>
+            <td class="mono-cell">hóo</td>
+            <td>陰上（非入聲）</td>
+            <td class="mono-cell">2 → 1</td>
+            <td>短褲(2-3→1-3)、拗紙(2-2→1-2)；聽著第1聲愛寫第2聲</td>
+          </tr>
+          <tr>
+            <td class="mono-cell">第 3 聲</td>
+            <td><strong>豹</strong></td>
+            <td class="mono-cell">pà</td>
+            <td>陰去（非入聲）</td>
+            <td class="mono-cell">一般 3 → 2；仔前 3 → 1</td>
+            <td>一般連讀 3 → 2；兔仔仔前變調 3-2 → 1-2</td>
+          </tr>
+          <tr>
+            <td class="mono-cell">第 4 聲</td>
+            <td><strong>鱉</strong></td>
+            <td class="mono-cell">pih</td>
+            <td>陰入（短促急停）</td>
+            <td class="mono-cell">-h → 2；-p/-t/-k → 8</td>
+            <td>鴨仔的 -h 在仔前：4-2 → 1-2；-p/-t/-k 另見下表</td>
+          </tr>
+          <tr>
+            <td class="mono-cell">第 5 聲</td>
+            <td><strong>猴</strong></td>
+            <td class="mono-cell">kâu</td>
+            <td>陽平（非入聲）</td>
+            <td class="mono-cell">5 → 7</td>
+            <td>黃金(5-1→7-1)、籃仔(5-2→7-2)、蚵仔(5-2→7-2)</td>
+          </tr>
+          <tr class="is-merged">
+            <td class="mono-cell">第 6 聲</td>
+            <td><strong>狗</strong></td>
+            <td class="mono-cell">káu</td>
+            <td>陽上（已併入第 2 聲）</td>
+            <td class="mono-cell">同第 2 聲</td>
+            <td>發音與第 2 聲相同合在一起，形成「8 聲 7 調」</td>
+          </tr>
+          <tr>
+            <td class="mono-cell">第 7 聲</td>
+            <td><strong>象</strong></td>
+            <td class="mono-cell">tshiūnn</td>
+            <td>陽去（非入聲）</td>
+            <td class="mono-cell">7 → 3</td>
+            <td>一般變調 7 → 3；簿仔則屬仔前變調 7 → 7</td>
+          </tr>
+          <tr>
+            <td class="mono-cell">第 8 聲</td>
+            <td><strong>鹿</strong></td>
+            <td class="mono-cell">lo̍k</td>
+            <td>陽入（短促急停）</td>
+            <td class="mono-cell">-h → 3；-p/-t/-k → 4</td>
+            <td>葉仔原調 8-2 → 變調 7-2（仔前變調）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>一般變調與「仔」前變調對照</h3>
+    <p>以下以常見的漳腔系統及詞尾完整讀作 á 的詞為例。先確認前字的本調與韻尾，再判斷是否位於詞尾「仔」之前；各地讀音、連音及特殊詞語可能不同。</p>
+    <div class="tones-table-wrap"><table class="kiln-table"><thead><tr><th>前字本調</th><th>一般連讀</th><th>「仔」前</th><th>仔前例子：本調 → 實際調類</th></tr></thead><tbody>
+      <tr><td>1</td><td>1 → 7</td><td>1 → 7</td><td>孫仔 sun-á：1-2 → 7-2</td></tr>
+      <tr><td>2</td><td>2 → 1</td><td>2 → 1</td><td>草仔 tsháu-á：2-2 → 1-2</td></tr>
+      <tr><td>3</td><td>3 → 2</td><td><strong>3 → 1</strong></td><td>兔仔 thòo-á：3-2 → 1-2</td></tr>
+      <tr><td>4（-h）</td><td>4 → 2</td><td><strong>4 → 1</strong></td><td>鴨仔 ah-á：4-2 → 1-2</td></tr>
+      <tr><td>4（-p/-t/-k）</td><td>4 → 8</td><td>4 → 8</td><td>竹仔 tik-á：4-2 → 8-2</td></tr>
+      <tr><td>5</td><td>5 → 7</td><td>5 → 7</td><td>爐仔 lôo-á：5-2 → 7-2</td></tr>
+      <tr><td>7</td><td>7 → 3</td><td><strong>7 → 7</strong></td><td>簿仔 phōo-á：7-2 → 7-2</td></tr>
+      <tr><td>8（-h）</td><td>8 → 3</td><td><strong>8 → 7</strong></td><td>葉仔 hio̍h-á：8-2 → 7-2</td></tr>
+      <tr><td>8（-p/-t/-k）</td><td>8 → 4</td><td>8 → 4</td><td>賊仔 tsha̍t-á：8-2 → 4-2</td></tr>
+    </tbody></table></div>
+    <p>表格的箭號表示<strong>實際讀音的調類</strong>；臺羅通常仍依本調書寫，如「簿仔」寫 phōo-á。入聲與仔相接時也可能有韻尾脫落或連音，數字不能完整呈現音變。例子以單獨說出詞語為前提；句中依語意、語調單位及輕聲可能不同。</p>
+    <p>資料參考：<a href="https://mhi.moe.edu.tw/faq/index.html?page=2&amp;reloaded=" target="_blank" rel="noopener">教育部本土語言資源網：變調規則</a>；<a href="https://aclclp.org.tw/rocling/2005/M21.pdf" target="_blank" rel="noopener">《台語變調系統實作研究》</a>。</p>
+
+    <div class="sandhi-lab">
+      <div class="ring-panel">
+        <span class="field-label">非入聲環狀變調圖（點選調號模擬：5 → 7 → 3 → 2 → 1 → 7）</span>
+        <div class="ring-svg-wrap">
+          <svg viewBox="0 0 340 310" width="100%" aria-label="台語非入聲環狀變調結構圖">
+            <defs>
+              <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,1 L7,4 L0,7 Z" fill="var(--secondary)"></path>
+              </marker>
+              <marker id="arrowHeadActive" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,1 L7,4 L0,7 Z" fill="var(--tertiary)"></path>
+              </marker>
+            </defs>
+            <!-- Outer pentagon cycle: 5(170,44) -> 7(284,126) -> 3(240,258) -> 2(100,258) -> 1(56,126) -> 7 -->
+            <circle cx="170" cy="160" r="108" class="svg-ring-line" stroke-dasharray="4 4"></circle>
+            <!-- Arrows -->
+            <path id="edge-5" d="M192,58 L266,112" class="svg-ring-arrow" marker-end="url(#arrowHead)"></path>
+            <path id="edge-7" d="M276,152 L248,234" class="svg-ring-arrow" marker-end="url(#arrowHead)"></path>
+            <path id="edge-3" d="M214,258 L128,258" class="svg-ring-arrow" marker-end="url(#arrowHead)"></path>
+            <path id="edge-2" d="M92,234 L64,152" class="svg-ring-arrow" marker-end="url(#arrowHead)"></path>
+            <path id="edge-1" d="M84,126 L254,126" class="svg-ring-arrow" marker-end="url(#arrowHead)"></path>
+
+            <!-- Tone Nodes -->
+            <g onclick="selectSandhiTone('5')" role="button" tabindex="0" aria-label="第5聲">
+              <circle id="node-5" cx="170" cy="44" r="24" class="svg-node-circle"></circle>
+              <text id="text-5" x="170" y="44" class="svg-node-text">5 猴</text>
+            </g>
+            <g onclick="selectSandhiTone('7')" role="button" tabindex="0" aria-label="第7聲">
+              <circle id="node-7" cx="284" cy="126" r="24" class="svg-node-circle"></circle>
+              <text id="text-7" x="284" y="126" class="svg-node-text">7 象</text>
+            </g>
+            <g onclick="selectSandhiTone('3')" role="button" tabindex="0" aria-label="第3聲">
+              <circle id="node-3" cx="240" cy="258" r="24" class="svg-node-circle"></circle>
+              <text id="text-3" x="240" y="258" class="svg-node-text">3 豹</text>
+            </g>
+            <g onclick="selectSandhiTone('2')" role="button" tabindex="0" aria-label="第2聲">
+              <circle id="node-2" cx="100" cy="258" r="24" class="svg-node-circle"></circle>
+              <text id="text-2" x="100" y="258" class="svg-node-text">2 虎</text>
+            </g>
+            <g onclick="selectSandhiTone('1')" role="button" tabindex="0" aria-label="第1聲">
+              <circle id="node-1" cx="56" cy="126" r="24" class="svg-node-circle"></circle>
+              <text id="text-1" x="56" y="126" class="svg-node-text">1 獅</text>
+            </g>
+          </svg>
+        </div>
+        <p style="font-size:0.875rem; color:var(--on-surface-variant); margin:var(--space-sm) 0 0 0;">口訣記憶：<strong>5 變 7、7 變 3、3 變 2、2 變 1、1 變 7</strong>；雙向反推聽寫：聽著第 1 聲愛寫第 2 聲，聽著第 2 聲愛唸第 3 聲。</p>
+      </div>
+
+      <div class="sandhi-controls">
+        <div>
+          <span class="field-label">點選任一原調（含入聲調別）檢視變調結果</span>
+          <div class="tone-selector-grid" style="margin-top:var(--space-xs);">
+            <button type="button" class="tone-node-btn is-active" onclick="selectSandhiTone('5', this)">5 猴</button>
+            <button type="button" class="tone-node-btn" onclick="selectSandhiTone('7', this)">7 象</button>
+            <button type="button" class="tone-node-btn" onclick="selectSandhiTone('3', this)">3 豹</button>
+            <button type="button" class="tone-node-btn" onclick="selectSandhiTone('2', this)">2 虎</button>
+            <button type="button" class="tone-node-btn" onclick="selectSandhiTone('1', this)">1 獅</button>
+            <button type="button" class="tone-node-btn" onclick="selectSandhiTone('4h', this)">4 (-h)</button>
+            <button type="button" class="tone-node-btn" onclick="selectSandhiTone('4ptk', this)">4 (-ptk)</button>
+            <button type="button" class="tone-node-btn" onclick="selectSandhiTone('8h', this)">8 (-h)</button>
+            <button type="button" class="tone-node-btn" onclick="selectSandhiTone('8ptk', this)">8 (-ptk)</button>
+          </div>
+        </div>
+
+        <div class="sandhi-result-card" id="sandhi-result-card" aria-live="polite">
+          <div class="sandhi-flow-line" id="sandhi-flow">第 5 聲（猴） → 變為 第 7 聲（象）</div>
+          <p id="sandhi-explain" style="margin:0 0 var(--space-sm) 0;"></p>
+          <span class="badge-tag" id="sandhi-dictation">聽寫提示：聽見第 7 聲時，可能是原調 5 或 1</span>
+        </div>
+
+        <div class="syllable-box">
+          <span class="field-label">「仔」(á, 第 2 聲) 前與常用雙字詞變調考點點擊器</span>
+          <div class="a-word-grid" id="a-word-grid"></div>
+          <p id="a-word-detail" style="margin:var(--space-md) 0 0 0; font-size:0.9375rem; color:var(--secondary); font-weight:500;">點選上方詞彙，檢視原調與連讀變調對照。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: 100-QUESTION QUIZ ARENA -->
+  <section class="section-block" id="sec-quiz">
+    <div class="section-head">
+      <div>
+        <span class="section-index">PART 04 · 100 題精選試卷實戰練習</span>
+        <h2 class="section-title">五大主題百題線上測驗（作答紀錄自動儲存）</h2>
+      </div>
+    </div>
+    <p class="section-lede">收錄完整 100 道台羅拼音精選試題，涵蓋音節結構與聲母、韻母分類與發音、聲調與變調規則、詞彙拼音變調實務及文化俚語應用。支援題型篩選、錯題重練、即時解析與 CSV 成績匯出。</p>
+
+    <div class="quiz-toolbar">
+      <div class="quiz-filters-row">
+        <div class="field-group">
+          <label class="field-label" for="quiz-cat-select">練習單元篩選</label>
+          <select id="quiz-cat-select" class="kiln-select" onchange="applyQuizFilter()">
+            <option value="all">全部題庫 (第 1–100 題)</option>
+            <option value="0">一、音節結構與聲母觀念 (1–20)</option>
+            <option value="1">二、韻母分類與發音 (21–40)</option>
+            <option value="2">三、聲調與變調規則 (41–65)</option>
+            <option value="3">四、詞彙拼音與變調實務 (66–85)</option>
+            <option value="4">五、文化俚語與綜合應用 (86–100)</option>
+            <option value="wrong">僅練習錯題與未答題</option>
+          </select>
+        </div>
+        <button type="button" class="btn-secondary" onclick="exportQuizReport()">匯出作答紀錄 (CSV)</button>
+      </div>
+      <button type="button" class="btn-secondary" id="reset-quiz-btn" onclick="resetQuizProgress(this)">重設測驗紀錄</button>
+    </div>
+
+    <div class="stats-bar" aria-label="測驗即時統計">
+      <div class="stat-mini"><span>目前進度</span><strong id="stat-progress">0 / 100</strong></div>
+      <div class="stat-mini"><span>答對題數</span><strong id="stat-correct">0</strong></div>
+      <div class="stat-mini"><span>答錯題數</span><strong id="stat-wrong">0</strong></div>
+      <div class="stat-mini"><span>正確率</span><strong id="stat-rate">0%</strong></div>
+    </div>
+
+    <div class="quiz-workspace">
+      <div id="question-host"></div>
+
+      <aside class="matrix-panel" aria-label="題號快速導覽矩陣">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="field-label">題號總覽（點擊跳題）</span>
+          <span class="field-label" id="matrix-count-label">100 題</span>
+        </div>
+        <div class="matrix-grid" id="matrix-grid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>內容依據：臺灣閩南語羅馬字拼音系統（台羅拼音）100 題精選試卷與核心簡報考點整理。</span>
+    <span>支援鍵盤導覽與自動作答進度保存</span>
+  </footer>
+</div>
+
+<api-shim></api-shim>
+<script>
+const INITIALS_DATA = [
+  { sym: `p`, cat: `雙唇音`, group: `p, ph, m, b`, air: `喙空（口腔）爆破出氣`, mech: `雙唇合起來擋住氣流後打開（不送氣清塞音）。`, note: `「豹 pà」即為 p 聲母（第 3 聲）。` },
+  { sym: `ph`, cat: `雙唇音`, group: `p, ph, m, b`, air: `喙空（口腔）強力送氣`, mech: `雙唇合起來擋住氣流後打開，伴隨強氣流（送氣清塞音）。`, note: `合唇音四成員之一，發音部位與 p 相同，差別在送氣。` },
+  { sym: `m`, cat: `雙唇音`, group: `p, ph, m, b`, air: `鼻空（鼻腔）洩出`, mech: `雙唇緊閉擋住口腔，氣流主要從鼻空（鼻腔）洩出來。`, note: `雙唇音中唯一氣流走鼻腔者，亦能單獨作聲化韻母。` },
+  { sym: `b`, cat: `雙唇音`, group: `p, ph, m, b`, air: `喙空（口腔）微弱出氣`, mech: `雙唇合起來擋住氣流後打開，聲帶先行振動（濁音）。`, note: `考題常辨析 b 屬於合唇音（雙唇音）。` },
+  { sym: `t`, cat: `舌尖音`, group: `t, th, n, l`, air: `喙空（口腔）出氣`, mech: `舌尖放在上下排牙齒交界處阻塞後放開（不送氣）。`, note: `「豬仔」的「豬 ti」聲母屬於舌尖音。` },
+  { sym: `th`, cat: `舌尖音`, group: `t, th, n, l`, air: `喙空（口腔）強力送氣`, mech: `舌尖抵住上下排牙齒交界處後送氣釋放。`, note: `與 t 同屬舌尖音。` },
+  { sym: `n`, cat: `舌尖音`, group: `t, th, n, l`, air: `鼻空（鼻腔）洩出`, mech: `舌尖放在上下排牙齒交界處，氣流從鼻腔出來。`, note: `舌尖鼻音，與 -n 韻尾動作部位一致。` },
+  { sym: `l`, cat: `舌尖音`, group: `t, th, n, l`, air: `舌頭兩側口腔邊音`, mech: `舌尖抵住上齒齦處，氣流自舌側流出。`, note: `台語 l 實音常帶輕微濁塞或閃音特質，歸類於舌尖音。` },
+  { sym: `k`, cat: `舌根音`, group: `k, kh, ng, g`, air: `喙空（口腔）出氣`, mech: `舌根抵住軟顎阻塞氣流後放開（不送氣）。`, note: `「黃金」的「金 kim」聲母屬於舌根音 k。` },
+  { sym: `kh`, cat: `舌根音`, group: `k, kh, ng, g`, air: `喙空（口腔）送氣`, mech: `舌根抵住軟顎後強力送氣放開。`, note: `與 k、ng、g 同屬舌根音，考題常混入 s 作為干擾項。` },
+  { sym: `ng`, cat: `舌根音`, group: `k, kh, ng, g`, air: `鼻腔洩出`, mech: `舌根抬起擋住口腔，氣流從鼻腔洩出。`, note: `發聲母 ng 時氣流從鼻腔洩出；亦能獨立成聲化韻母。` },
+  { sym: `g`, cat: `舌根音`, group: `k, kh, ng, g`, air: `喙空（口腔）濁音`, mech: `舌根抵住軟顎並振動聲帶。`, note: `如「蜈蚣 giâ-kang」之 g。` },
+  { sym: `ts`, cat: `舌齒音`, group: `ts, tsh, s, j`, air: `口腔齒間摩擦`, mech: `舌尖靠近前上排牙齒，不送氣清塞擦音。`, note: `「象 tshiūnn」的姊妹音，留意拼音為 ts 非 c/z。` },
+  { sym: `tsh`, cat: `舌齒音`, group: `ts, tsh, s, j`, air: `口腔齒間送氣摩擦`, mech: `舌尖靠近前上排牙齒，送氣清塞擦音。`, note: `「田嬰」以外如「象 tshiūnn」即 tsh。` },
+  { sym: `s`, cat: `舌齒音`, group: `ts, tsh, s, j`, air: `口腔齒間持續擦音`, mech: `舌尖靠近前上排牙齒形成窄縫使氣流摩擦通過。`, note: `「獅 sai」聲母；考題常考「s 不屬於舌根音」。` },
+  { sym: `j`, cat: `舌齒音`, group: `ts, tsh, s, j`, air: `口腔齒間濁擦音`, mech: `舌尖靠近前上排牙齒並振動聲帶。`, note: `舌齒音四個為 ts, tsh, s, j。` },
+  { sym: `h`, cat: `喉音`, group: `h`, air: `喉部微弱氣流`, mech: `有發音動作（送氣摩擦位置在喉），但無發出聲帶聲音。`, note: `「虎 hóo」聲母屬於喉音。` },
+  { sym: `Ø (零聲母)`, cat: `零聲母`, group: `無輔音標記`, air: `依韻母直接出氣`, mech: `無預備輔音的音節，直接由韻母元音或聲化韻母起音。`, note: `「鴨 ah」、「烏鴉 oo-a」皆屬零聲母音節；連同 17 輔音共計 18 聲母。` }
+];
+
+const FINALS_DATA = {
+  vowel: {
+    title: `1. 元音韻母（6 個單元音 ＋ 複元音）`,
+    desc: `台語單元音韻母僅由 1 個元音構成，共 6 個基本元音：a, i, u, e, oo, o。複元音則由兩個或三個元音連續滑動組合而成。`,
+    tags: [
+      { t: `單元音：a`, k: true }, { t: `i`, k: true }, { t: `u`, k: true },
+      { t: `e`, k: true }, { t: `oo`, k: true }, { t: `o`, k: true },
+      { t: `複元音：ai`, k: false }, { t: `au`, k: false }, { t: `ia`, k: false },
+      { t: `iu`, k: false }, { t: `io`, k: false }, { t: `ua`, k: false },
+      { t: `ue`, k: false }, { t: `ui`, k: false }, { t: `iau`, k: false }, { t: `uai`, k: false }
+    ],
+    tip: `必考區辨：oo 與 o 是兩個不同的單元音；ai 屬於複元音韻母，並非鼻音或鼻化韻母。`
+  },
+  nasalized: {
+    title: `2. 鼻化元音（共 12 個，標記 -nn）`,
+    desc: `發音時軟顎下垂，氣流同時從「口腔與鼻腔」流出。台羅拼音在元音後加上 -nn 作為鼻化標記。`,
+    tags: [
+      { t: `ann`, k: true }, { t: `inn`, k: true }, { t: `enn`, k: true }, { t: `onn`, k: true },
+      { t: `ainn`, k: false }, { t: `aunn`, k: false }, { t: `iann`, k: false }, { t: `iunn`, k: false },
+      { t: `uann`, k: false }, { t: `uinn`, k: false }, { t: `iaunn`, k: false }, { t: `uainn`, k: false }
+    ],
+    tip: `考點記憶：共有 12 個鼻化元音；特徵為結尾標記 -nn（如「象 tshiūnn」、「食錢 tsia̍h-tsînn」）。`
+  },
+  nasal: {
+    title: `3. 鼻音韻母（元音 ＋ m / n / ng）`,
+    desc: `由元音加上三大鼻輔音韻尾結合而成。三者發音動作不同，決定了最後口腔封閉的位置。`,
+    tags: [
+      { t: `-m (4個)：am`, k: true }, { t: `im`, k: true }, { t: `om`, k: true }, { t: `iam`, k: true },
+      { t: `-n：an`, k: false }, { t: `in`, k: false }, { t: `un`, k: false }, { t: `ian`, k: false }, { t: `uan`, k: false },
+      { t: `-ng：ang`, k: false }, { t: `ing`, k: false }, { t: `ong`, k: false }, { t: `iang`, k: false }, { t: `iong`, k: false }, { t: `uang`, k: false }
+    ],
+    tip: `-m：接元音後合唇、氣流從鼻腔出（共 4 個）；-n：舌尖放前上排牙齒／齒齦處；-ng：舌頭向後拉，氣流從鼻腔與口腔出來。`
+  },
+  entering: {
+    title: `4. 入聲韻母（結尾 h / p / t / k）`,
+    desc: `台語入聲韻母最大特徵為「音短閣急停」，只能搭配第 4 聲或第 8 聲。依尾音分成 h, p, t, k 四組塞音或喉塞音收尾。`,
+    tags: [
+      { t: `-h：ah / ih / uh / eh / oh / ooh`, k: true },
+      { t: `-p：ap / ip / op / iap`, k: false },
+      { t: `-t：at / it / ut / iat / uat`, k: false },
+      { t: `-k：ak / ik / ok / iak / iok`, k: false }
+    ],
+    tip: `考點口訣：h 嘴微微仔褫開；p 嘴唇收束合起來（如 翕 hip）；t 舌尖抵上齒齦（如 沃水 at）；k 出現「束喉現象」。`
+  },
+  syllabic: {
+    title: `5. 聲化韻母（m / ng）`,
+    desc: `鼻音輔音 m 與 ng 在無其他元音搭配下，本身即可響亮成韻，擔任音節核心，稱為「聲化韻母」。`,
+    tags: [
+      { t: `m（如：毋 m̄、梅 muî/m̂）`, k: true },
+      { t: `ng（如：黃 n̂g、湯 thng）`, k: true }
+    ],
+    tip: `必考例詞：諺語「一日徙栽，三日徛黃 (khiā-n̂g)」中的「黃 n̂g」即包含聲化韻母。`
+  }
+};
+
+const SANDHI_INFO = {
+  '5': { title: `第 5 聲（猴 kâu） → 第 7 聲（象 tshiūnn）`, desc: `非入聲環狀變調第一步：陽平第 5 聲在非句尾連讀時，變調為陽去第 7 聲。例：黃金(5-1→7-1)、毛筆(5-4→7-4)、郵局(5-8→7-8)。`, hint: `聽寫提示：聽見第 7 聲時，原調可能是第 5 聲或第 1 聲。` },
+  '7': { title: `第 7 聲（象 tshiūnn） → 第 3 聲（豹 pà）`, desc: `非入聲環狀變調：陽去第 7 聲連讀時，降變為陰去第 3 聲。例：一般變調 7 → 3；簿仔則屬仔前變調 7 → 7。`, hint: `聽寫提示：聽見第 3 聲（非入聲），原調通常是第 7 聲。` },
+  '3': { title: `第 3 聲（豹 pà） → 第 2 聲（虎 hóo）`, desc: `一般環狀變調中，第 3 聲變調後成為第 2 聲（「兔仔」屬仔前變調，3-2 → 1-2）。`, hint: `聽寫口訣：「聽著第二聲愛唸第三聲」（變調音聽2寫3）。` },
+  '2': { title: `第 2 聲（虎 hóo） → 第 1 聲（獅 sai）`, desc: `第 2 聲連讀時變調為平穩高調第 1 聲。例：短褲(2-3→1-3)、野球(2-5→1-5)、拗紙(2-2→1-2)。`, hint: `聽寫口訣：「聽著第一聲愛寫第二聲」（變調音聽1寫2）。` },
+  '1': { title: `第 1 聲（獅 sai） → 第 7 聲（象 tshiūnn）`, desc: `第 1 聲連讀時變為中平調第 7 聲，與第 5 聲同歸第 7 聲。例：雞公(1-1→7-1)、溫泉(1-5→7-5)、觱仔(1-2→7-2)。`, hint: `聽寫提示：1 變 7、5 也變 7，須結合字義分辨原調 1 或 5。` },
+  '4h': { title: `第 4 聲 (-h 尾，如 鱉 pih) → 第 2 聲`, desc: `依簡報入聲變調規則，尾音為 -h 的第 4 聲入聲字，變調後失去喉塞音而轉為第 2 聲（部分仔前詞例題 79 鴨仔 4-2 標示 1-2）。`, hint: `對比：-h 尾第 4 聲變第 2 聲；-p/-t/-k 尾第 4 聲變第 8 聲。` },
+  '4ptk': { title: `第 4 聲 (-p/-t/-k 尾) → 第 8 聲`, desc: `尾音為 p, t, k 的第 4 聲入聲字，變調後保留短促塞音尾，音高上移為第 8 聲。`, hint: `記憶對照：第 4 聲 (-p/-t/-k) ↔ 第 8 聲 (-p/-t/-k) 互變。` },
+  '8h': { title: `第 8 聲 (-h 尾) → 第 3 聲`, desc: `依簡報規則，尾音為 -h 的第 8 聲入聲字變調後轉為第 3 聲。`, hint: `對比：-h 尾第 8 聲變第 3 聲；-p/-t/-k 尾第 8 聲變第 4 聲。` },
+  '8ptk': { title: `第 8 聲 (-p/-t/-k 尾，如 鹿 lo̍k) → 第 4 聲`, desc: `尾音為 p, t, k 的第 8 聲入聲字，變調後保留短促塞音尾，音高降為第 4 聲。`, hint: `記憶對照：4 與 8 的 -p/-t/-k 互變，-h 則分別變為 2 與 3。` }
+};
+
+const WORD_EXAMPLES = [
+  { w: `觱仔`, orig: `1-2`, sandhi: `7-2`, note: `火車過了，才歕觱仔（第 1 聲變 7）` },
+  { w: `簿仔`, orig: `7-2`, sandhi: `7-2`, note: `仔前變調：第 7 聲維持第 7 聲；一般連讀則 7 變 3` },
+  { w: `毛筆`, orig: `5-4`, sandhi: `7-4`, note: `我會曉寫毛筆（第 5 聲變 7）` },
+  { w: `豬仔`, orig: `1-2`, sandhi: `7-2`, note: `彼隻豬仔誠古錐（第 1 聲變 7）` },
+  { w: `兔仔`, orig: `3-2`, sandhi: `1-2`, note: `兔仔愛食草（仔前 3 變 1；一般連讀 3 變 2）` },
+  { w: `籃仔`, orig: `5-2`, sandhi: `7-2`, note: `籃仔內底貯啥（第 5 聲變 7）` },
+  { w: `雞公`, orig: `1-1`, sandhi: `7-1`, note: `閹過的雞公飼較會大（第 1 聲變 7）` },
+  { w: `短褲`, orig: `2-3`, sandhi: `1-3`, note: `穿短褲會予虻仔咬（第 2 聲變 1）` },
+  { w: `黃金`, orig: `5-1`, sandhi: `7-1`, note: `阮母仔的黃金（第 5 聲變 7）` },
+  { w: `查埔`, orig: `1-1`, sandhi: `7-1`, note: `查埔人才有的（第 1 聲變 7）` },
+  { w: `田嬰`, orig: `5-1`, sandhi: `7-1`, note: `招我去拈田嬰（第 5 聲變 7）` },
+  { w: `時鐘`, orig: `5-1`, sandhi: `7-1`, note: `看無時鐘（第 5 聲變 7）` },
+  { w: `茶甌`, orig: `5-1`, sandhi: `7-1`, note: `茶甌必開（第 5 聲變 7）` },
+  { w: `拗紙`, orig: `2-2`, sandhi: `1-2`, note: `誠𠢕拗紙（第 2 聲變 1）` },
+  { w: `鴨仔`, orig: `4-2`, sandhi: `1-2`, note: `鴨仔聽雷（仔前 -h 韻尾第 4 聲變 1）` },
+  { w: `葉仔`, orig: `8-2`, sandhi: `7-2`, note: `菜葉仔揀掉（仔前 -h 韻尾第 8 聲變 7）` },
+  { w: `阿媽`, orig: `1-2`, sandhi: `7-2`, note: `阿媽去園裡薅番薯（第 1 聲變 7）` },
+  { w: `溫泉`, orig: `1-5`, sandhi: `7-5`, note: `浸溫泉燒唿唿（第 1 聲變 7）` },
+  { w: `鞋仔`, orig: `5-2`, sandhi: `7-2`, note: `這雙鞋仔是新的（第 5 聲變 7）` },
+  { w: `野球`, orig: `2-5`, sandhi: `1-5`, note: `台灣野球真出名（第 2 聲變 1）` },
+  { w: `郵局`, orig: `5-8`, sandhi: `7-8`, note: `上近的郵局佇佗位（第 5 聲變 7）` },
+  { w: `蜈蚣`, orig: `5-1`, sandhi: `7-1`, note: `蜈蚣、蛤仔、蛇（原調 5-1 → 7-1）` },
+  { w: `蚵仔`, orig: `5-2`, sandhi: `7-2`, note: `蚵仔麵線大碗閣滿墘（原調 5-2 → 7-2）` },
+  { w: `烏鴉`, orig: `1-1`, sandhi: `7-1`, note: `烏鴉喙，糊瘰瘰（原調 1-1 → 7-1）` }
+];
+
+const QUIZ_CATS = [
+  `一、音節結構與聲母觀念題`,
+  `二、韻母分類與發音題`,
+  `三、聲調與變調規則題`,
+  `四、詞彙拼音與變調實務題`,
+  `五、文化俚語與綜合應用題`
+];
+
+// [catIdx, prompt, [A,B,C,D], correctIdx(0-3), explanation]
+const QUIZ_BANK = [
+  [0,`1. 台語的音節結構是由哪三者所組成？`,[`聲母、韻母、聲調`,`聲母、介音、韻尾`,`聲母、韻母、重音`,`主音、輔音、輕音`],0,`台語音節結構固定由「聲母、韻母、聲調」三者組成。`],
+  [0,`2. 根據簡報，台語總共有幾個聲母（含零聲母）？`,[`15個`,`16個`,`18個`,`20個`],2,`台語共有 17 個實聲母加上 1 個零聲母，合計 18 個聲母。`],
+  [0,`3. 簡報中將台語聲母分為幾種發音部位與類別？`,[`4種`,`5種`,`6種`,`7種`],2,`分為雙唇音、舌尖音、舌根音、舌齒音、喉音、零聲母共 6 種。`],
+  [0,`4. 拼音字母 p、ph、m、b 在聲母分類中屬於哪一種音？`,[`舌尖音`,`雙唇音（合唇音）`,`舌根音`,`舌齒音`],1,`p, ph, m, b 均由雙唇閉合作用發聲，稱為雙唇音（合唇音）。`],
+  [0,`5. 發「合唇音」時，發音器官的作用方式為何？`,[`舌尖靠近上齒齦`,`雙唇合起來擋住氣流後打開`,`舌根阻塞氣流`,`喉嚨直接發聲`],1,`發合唇音（雙唇音）時，需雙唇合起來擋住氣流後再打開。`],
+  [0,`6. 發聲母 m 時，氣流主要是從哪裡洩出來？`,[`喙空（口腔）`,`鼻空（鼻腔）`,`喉嚨`,`兩頰`],1,`m 是雙唇鼻音，氣流主要經由鼻空（鼻腔）洩出。`],
+  [0,`7. 拼音字母 t、th、n、l 在聲母分類中屬於哪一種音？`,[`雙唇音`,`舌尖音`,`舌根音`,`喉音`],1,`t, th, n, l 屬於舌尖音。`],
+  [0,`8. 發「舌尖音」時，舌尖應放在什麼位置？`,[`上下排牙齒交界處`,`軟顎處`,`硬顎後方`,`緊貼下唇`],0,`依簡報說明，發舌尖音時舌尖置於上下排牙齒交界處。`],
+  [0,`9. 拼音字母 k、kh、ng、g 在聲母分類中屬於哪一種音？`,[`舌齒音`,`雙唇音`,`舌根音`,`零聲母`],2,`k, kh, ng, g 屬於舌根音。`],
+  [0,`10. 發聲母 ng 時，氣流從何處洩出？`,[`口腔`,`鼻腔`,`喉嚨`,`無氣流`],1,`ng 為舌根鼻音，發音時氣流從鼻腔洩出。`],
+  [0,`11. 拼音字母 ts、tsh、s、j 在聲母分類中屬於哪一種音？`,[`舌齒音`,`舌根音`,`喉音`,`合唇音`],0,`ts, tsh, s, j 屬於舌齒音。`],
+  [0,`12. 發「舌齒音」時，舌尖應靠近何處？`,[`舌根`,`前上排牙齒`,`下唇`,`軟顎`],1,`發舌齒音時，舌尖靠近前上排牙齒形成摩擦或塞擦。`],
+  [0,`13. 聲母 h 在台語聲母分類中屬於哪一種音？`,[`喉音`,`舌尖音`,`舌根音`,`零聲母`],0,`h 為喉音。`],
+  [0,`14. 關於「零聲母」的定義，下列何者正確？`,[`聲母發音聲音極大`,`無預備輔音的音節`,`必須帶有 h 聲母`,`只出現在入聲字`],1,`零聲母是指沒有預備輔音、直接以韻母起音的音節。`],
+  [0,`15. 「喉音」發音時的特點為何？`,[`有發音動作，但無發出聲音`,`雙唇緊閉不開`,`氣流完全由鼻腔出`,`舌頭向上捲起`],0,`依簡報敘述，喉音（h）有發音動作，但聲帶無發出聲音。`],
+  [0,`16. 下列何者不屬於舌尖音？`,[`t`,`th`,`k`,`l`],2,`k 屬於舌根音，t, th, n, l 才屬於舌尖音。`],
+  [0,`17. 下列何者不屬於舌根音？`,[`k`,`kh`,`s`,`g`],2,`s 屬於舌齒音，k, kh, ng, g 才屬於舌根音。`],
+  [0,`18. 下列何者屬於合唇音（雙唇音）？`,[`b`,`t`,`ts`,`h`],0,`b 與 p, ph, m 同為合唇音（雙唇音）。`],
+  [0,`19. 「豬仔」的「豬」聲母屬於：`,[`合唇音`,`舌尖音 (t)`,`舌根音`,`喉音`],1,`「豬」拼音為 ti，聲母 t 屬於舌尖音。`],
+  [0,`20. 「黃金」的「黃」台羅拼音聲母為 h 或零聲母，而「金」(kim) 的聲母屬於：`,[`舌根音 (k)`,`舌齒音`,`舌尖音`,`合唇音`],0,`「金」拼音為 kim，聲母 k 屬於舌根音。`],
+
+  [1,`21. 根據簡報，台語共有幾個韻母？`,[`17個`,`52個`,`72個`,`8個`],2,`簡報記載台語共有 72 個韻母。`],
+  [1,`22. 簡報中將韻母分為幾大類？`,[`3種`,`4種`,`5種`,`6種`],2,`分為元音韻母、鼻化元音、鼻音韻母、入聲韻母、聲化韻母共 5 大類。`],
+  [1,`23. 下列何者不屬於簡報說明的五大韻母種類之一？`,[`元音韻母`,`鼻化元音`,`輕聲韻母`,`聲化韻母`],2,`五大韻母為元音、鼻化元音、鼻音、入聲、聲化韻母，不含輕聲韻母。`],
+  [1,`24. 「單元音韻母」是由幾個元音構成的韻母？`,[`1個`,`2個`,`3個`,`4個`],0,`單元音韻母由 1 個元音構成（a, i, u, e, oo, o）。`],
+  [1,`25. 台語的單元音包含以下哪些字母？`,[`a, i, u, e, oo, o`,`an, in, un`,`am, im, om`,`ah, ih, uh`],0,`台語單元音共有 a, i, u, e, oo, o 六個。`],
+  [1,`26. 下列何者屬於「複元音」韻母？`,[`a`,`ai`,`ann`,`am`],1,`ai 由 a 與 i 結合，屬於複元音韻母；ann 為鼻化元音，am 為鼻音韻母。`],
+  [1,`27. 關於「鼻化元音」的敘述，下列何者正確？`,[`共有12個，發音時氣流同時從口腔與鼻腔流出`,`結尾帶有 m 字母`,`結尾帶有 p, t, k 字母`,`只有發聲母時有鼻音`],0,`鼻化元音共有 12 個，發音時氣流同時從口腔與鼻腔流出。`],
+  [1,`28. 鼻化元音在台羅拼音中的標示特徵為標記：`,[`-g`,`-nn`,`-h`,`-m`],1,`鼻化元音在台羅拼音中以結尾加標 -nn 表示。`],
+  [1,`29. 鼻音韻母由元音與哪三個鼻輔音結合而成？`,[`m, n, ng`,`p, t, k`,`b, g, j`,`h, s, z`],0,`鼻音韻母的三大韻尾為 m, n, ng。`],
+  [1,`30. 發 -m 鼻音韻母時，接續元音後的操作方式為何？`,[`舌尖抵住上齒齦`,`合唇，氣流從鼻腔出`,`舌頭向後拉`,`嘴巴大張`],1,`發 -m 鼻音韻母時須閉合雙唇，使氣流從鼻腔出。`],
+  [1,`31. 依簡報記載，-m 鼻音韻母有幾個？`,[`3個`,`4個（am, im, om, iam）`,`5個`,`6個`],1,`依簡報記載，-m 鼻音韻母共有 4 個：am, im, om, iam。`],
+  [1,`32. 發 -n 鼻音韻母時，舌頭的位置應如何處理？`,[`舌尖放在前上排牙齒/齒齦處`,`雙唇緊閉`,`舌根隆起`,`舌頭縮回喉嚨`],0,`發 -n 鼻音韻母時，舌尖需放在前上排牙齒／齒齦處。`],
+  [1,`33. 發 -ng 鼻音韻母時，發音動作為何？`,[`雙唇合攏`,`舌頭向後拉，氣流從鼻腔與口腔出來`,`舌尖頂住下齒`,`嘴巴閉合不吐氣`],1,`發 -ng 鼻音韻母時舌頭向後拉，氣流從鼻腔與口腔出來。`],
+  [1,`34. 下列何者屬於 -ng 鼻音韻母？`,[`an`,`ang`,`am`,`ah`],1,`ang 結尾為 -ng，屬於 -ng 鼻音韻母。`],
+  [1,`35. 入聲韻母的發音特點為何？`,[`聲音拉長且平穩`,`音短閣急停`,`氣流完全由鼻腔發出`,`必須輕聲發音`],1,`入聲韻母帶有塞音或喉塞韻尾，特點是「音短閣急停」。`],
+  [1,`36. 入聲韻母結尾是由哪四個字母標示？`,[`h, p, t, k`,`m, n, ng, h`,`a, e, i, o`,`s, ts, tsh, j`],0,`台語入聲韻母結尾字母為 h, p, t, k。`],
+  [1,`37. 發 h 入聲韻母時，嘴巴的狀態為何？`,[`嘴巴緊閉`,`嘴微微仔褫開（稍微張開）`,`雙唇突出`,`舌頭伸出`],1,`發 -h 入聲時，嘴微微仔褫開（稍微張開）。`],
+  [1,`38. 發 p 入聲韻母時，發音最後的動作為何？`,[`舌尖上頂`,`嘴唇收束合起來`,`束喉`,`張大嘴巴`],1,`發 -p 入聲韻母最後須將嘴唇收束合起來堵住氣流。`],
+  [1,`39. 發 k 入聲韻母時，喉嚨會出現什麼現象？`,[`束喉現象`,`振動聲帶`,`完全放鬆`,`咳嗽`],0,`發 -k 入聲韻母時，伴隨舌根閉塞與束喉現象。`],
+  [1,`40. 聲化韻母是由哪兩個字母構成？`,[`m, ng`,`p, k`,`i, u`,`an, en`],0,`台語只有 m 與 ng 兩個鼻音輔音能自成音節作聲化韻母。`],
+
+  [2,`41. 台語總共有幾個聲？實際標示幾個聲調？`,[`8聲，8調`,`8聲，7調`,`7聲，7調`,`6聲，5調`],1,`台語傳統稱為「8聲7調」，共有 8 個聲類，實際標示 7 個調號。`],
+  [2,`42. 為何台語通稱「8聲7調」？`,[`因為第2聲和第6聲發音相同合在一起`,`因為第4聲消失了`,`因為第8聲不標音`,`因為第1聲和第7聲相同`],0,`由於第 6 聲（陽上）與第 2 聲（陰上）發音相同合在一起，故共標示 7 調。`],
+  [2,`43. 關於台語聲調的性質，下列敘述何者正確？`,[`是絕對的音高`,`是相對的，每個人發音有略略仔差別`,`全世界統一音高`,`變調後長度完全不變`],1,`聲調屬於相對音高，每個人基本音域不同，發音有略略仔差別。`],
+  [2,`44. 代表「獅、虎、豹、鱉、猴、狗、象、鹿」的聲調順序為：`,[`1, 2, 3, 4, 5, 6, 7, 8`,`8, 7, 6, 5, 4, 3, 2, 1`,`1, 3, 5, 7, 2, 4, 6, 8`,`2, 1, 4, 3, 6, 5, 8, 7`],0,`八個動物口訣字正好依序對應第 1 至第 8 聲。`],
+  [2,`45. 簡報中口訣「聽著第二聲愛唸第幾聲」？`,[`第一聲`,`第三聲`,`第七聲`,`第五聲`],1,`依簡報口訣，由變調音第 2 聲反推原調為第 3 聲（3 變 2）。`],
+  [2,`46. 簡報中口訣「聽著第一聲愛寫第幾聲」？`,[`第一聲`,`第二聲`,`第三聲`,`第五聲`],1,`依簡報口訣，聽見變調音第 1 聲，原調愛寫第 2 聲（2 變 1）。`],
+  [2,`47. 一般非入聲字的變調規則中，第 5 聲變調後會變成第幾聲？`,[`第 7 聲`,`第 1 聲`,`第 3 聲`,`第 2 聲`],0,`非入聲變調口訣：5 變 7。`],
+  [2,`48. 一般非入聲字的變調規則中，第 2 聲變調後會變成第幾聲？`,[`第 1 聲`,`第 3 聲`,`第 5 聲`,`第 7 聲`],0,`非入聲變調口訣：2 變 1。`],
+  [2,`49. 一般非入聲字的變調規則中，第 3 聲變調後會變成第幾聲？`,[`第 2 聲`,`第 5 聲`,`第 1 聲`,`第 7 聲`],0,`一般連讀是 3 變 2；仔前則是 3 變 1。`],
+  [2,`50. 一般非入聲字的變調規則中，第 7 聲變調後會變成第幾聲？`,[`第 3 聲`,`第 2 聲`,`第 5 聲`,`第 1 聲`],0,`非入聲變調口訣：7 變 3。`],
+  [2,`51. 一般非入聲字的變調規則中，第 1 聲變調後會變成第幾聲？`,[`第 7 聲`,`第 2 聲`,`第 3 聲`,`第 5 聲`],0,`非入聲變調口訣：1 變 7。`],
+  [2,`52. 簡報變調規則圖示中，非入聲調環狀變調口訣順序，5 變 7，7 變 3，3 變 2，2 變 1，1 變：`,[`7`,`5`,`3`,`2`],0,`環狀變調口訣完整為：5→7→3→2→1→7。`],
+  [2,`53. 入聲字（尾音為 h 的第 4 聲），變調後通常變成第幾聲？`,[`第 2 聲`,`第 1 聲`,`第 7 聲`,`第 5 聲`],0,`尾音為 h 的第 4 聲入聲字變調後脫落喉塞尾音，常轉為第 2 聲。`],
+  [2,`54. 入聲字（尾音為 p, t, k 的第 4 聲），變調後通常變成第幾聲？`,[`第 8 聲`,`第 2 聲`,`第 1 聲`,`第 3 聲`],0,`尾音為 p, t, k 的第 4 聲與第 8 聲互相變調，故 4 變 8。`],
+  [2,`55. 入聲字（尾音為 h 的第 8 聲），變調後通常變成第幾聲？`,[`第 3 聲`,`第 7 聲`,`第 2 聲`,`第 5 聲`],0,`依簡報規則，尾音為 h 的第 8 聲變調後轉為第 3 聲。`],
+  [2,`56. 入聲字（尾音為 p, t, k 的第 8 聲），變調後通常變成第幾聲？`,[`第 4 聲`,`第 1 聲`,`第 2 聲`,`第 7 聲`],0,`尾音為 p, t, k 的第 8 聲變調後降為第 4 聲。`],
+  [2,`57. 「獅」 (sai) 的原調是第幾聲？`,[`第 1 聲`,`第 2 聲`,`第 3 聲`,`第 5 聲`],0,`口訣第一位「獅」代表第 1 聲。`],
+  [2,`58. 「虎」 (hóo) 的原調是第幾聲？`,[`第 1 聲`,`第 2 聲`,`第 3 聲`,`第 5 聲`],1,`口訣第二位「虎」代表第 2 聲。`],
+  [2,`59. 「豹」 (pà) 的原調是第幾聲？`,[`第 1 聲`,`第 2 聲`,`第 3 聲`,`第 4 聲`],2,`口訣第三位「豹」代表第 3 聲。`],
+  [2,`60. 「鱉」 (pih) 的原調是第幾聲？`,[`第 1 聲`,`第 4 聲`,`第 8 聲`,`第 2 聲`],1,`口訣第四位「鱉」為 -h 尾入聲字，代表第 4 聲。`],
+  [2,`61. 「猴」 (kâu) 的原調是第幾聲？`,[`第 3 聲`,`第 5 聲`,`第 7 聲`,`第 2 聲`],1,`口訣第五位「猴」代表第 5 聲。`],
+  [2,`62. 「象」 (tshiūnn) 的原調是第幾聲？`,[`第 3 聲`,`第 5 聲`,`第 7 聲`,`第 8 聲`],2,`口訣第七位「象」代表第 7 聲。`],
+  [2,`63. 「鹿」 (lo̍k) 的原調是第幾聲？`,[`第 4 聲`,`第 8 聲`,`第 2 聲`,`第 6 聲`],1,`口訣第八位「鹿」為 -k 尾入聲字，代表第 8 聲。`],
+  [2,`64. 台語詞彙在連續說話時，在一般語調單位中，末音節以外的音節通常需要進行：`,[`變調`,`輕聲化`,`轉音`,`省略`],0,`台語連讀習慣為「以語調單位為準，末音節通常讀本調；輕聲等情況另有例外」。`],
+  [2,`65. 「火車過了，才歕觱仔」中的「觱仔」，原調為 1-2，變調後的聲調組合為何？`,[`7-2`,`1-1`,`2-2`,`5-2`],0,`前字「觱」第 1 聲變為第 7 聲，後字「仔」維持原調第 2 聲，故為 7-2。`],
+
+  [3,`66. 「兩本簿仔」中的「簿仔」，原調為 7-2，變調後為：`,[`7-2`,`3-2`,`1-2`,`5-2`],0,`「簿仔」採仔前變調：前字「簿」第 7 聲讀第 7 聲，仔為第 2 聲，故為 7-2。`],
+  [3,`67. 「我會曉寫毛筆」中的「毛筆」，原調為 5-4，變調後為：`,[`7-4`,`1-4`,`5-8`,`3-4`],0,`前字「毛」第 5 聲變為第 7 聲，尾字「筆」維持原調 4 聲，故為 7-4。`],
+  [3,`68. 「彼隻豬仔看起來誠古錐」中的「豬仔」，原調為 1-2，變調後為：`,[`7-2`,`2-2`,`5-2`,`3-2`],0,`前字「豬」第 1 聲變為第 7 聲，故為 7-2。`],
+  [3,`69. 「兔仔愛食草」中的「兔仔」，原調為 3-2，變調後為：`,[`1-2（或2-2，依簡報標示為1-2）`,`7-2`,`5-2`,`3-1`],0,`依簡報仔前變調標示，「兔仔」原調 3-2 變讀為 1-2（一般變調為 2-2）。`],
+  [3,`70. 「這个籃仔內底貯啥」中的「籃仔」，原調為 5-2，變調後為：`,[`7-2`,`1-2`,`3-2`,`5-1`],0,`前字「籃」第 5 聲變為第 7 聲，故為 7-2。`],
+  [3,`71. 「閹過的雞公飼較會大」中的「雞公」，原調為 1-1，變調後為：`,[`7-1`,`2-1`,`5-1`,`3-1`],0,`前字「雞」第 1 聲變為第 7 聲，故為 7-1。`],
+  [3,`72. 「穿短褲會予虻仔咬」中的「短褲」，原調為 2-3，變調後為：`,[`1-3`,`7-3`,`5-3`,`3-3`],0,`前字「短」第 2 聲變為第 1 聲，故為 1-3。`],
+  [3,`73. 「阮母仔的黃金藏佗位」中的「黃金」，原調為 5-1，變調後為：`,[`7-1`,`1-1`,`3-1`,`2-1`],0,`前字「黃」第 5 聲變為第 7 聲，故為 7-1。`],
+  [3,`74. 「頷頸珠是查埔人才有的」中的「查埔」，原調為 1-1，變調後為：`,[`7-1`,`5-1`,`2-1`,`3-1`],0,`前字「查」第 1 聲變為第 7 聲，故為 7-1。`],
+  [3,`75. 「阿明招我去拈田嬰」中的「田嬰」，原調為 5-1，變調後為：`,[`7-1`,`1-1`,`3-1`,`5-5`],0,`前字「田」第 5 聲變為第 7 聲，故為 7-1。`],
+  [3,`76. 「囡仔人看無時鐘」中的「時鐘」，原調為 5-1，變調後為：`,[`7-1`,`2-1`,`1-1`,`3-1`],0,`前字「時」第 5 聲變為第 7 聲，故為 7-1。`],
+  [3,`77. 「茶甌必開」中的「茶甌」，原調為 5-1，變調後為：`,[`7-1`,`1-1`,`3-1`,`5-2`],0,`前字「茶」第 5 聲變為第 7 聲，故為 7-1。`],
+  [3,`78. 「我誠𠢕拗紙」中的「拗紙」，原調為 2-2，變調後為：`,[`1-2`,`7-2`,`5-2`,`3-2`],0,`前字「拗」第 2 聲變為第 1 聲，故為 1-2。`],
+  [3,`79. 「鴨仔聽雷」中的「鴨仔」，原調為 4-2，變調後為：`,[`1-2`,`8-2`,`7-2`,`3-2`],0,`依試卷選項，鴨仔（ah-á）在仔前常讀如第 1 聲調值，變調為 1-2。`],
+  [3,`80. 「共袂食得的菜葉仔揀掉」中的「葉仔」，原調為 8-2，變調後為：`,[`7-2`,`4-2`,`1-2`,`3-2`],0,`葉仔（hio̍h-á）第 8 聲前字在「仔」前依試卷規則變讀為第 7 聲，故為 7-2。`],
+  [3,`81. 「阿媽去園裡薅番薯」中的「阿媽」，原調為 1-2，變調後為：`,[`7-2`,`5-2`,`3-2`,`2-2`],0,`前字「阿」第 1 聲變為第 7 聲，故為 7-2。`],
+  [3,`82. 「浸溫泉規身軀燒唿唿」中的「溫泉」，原調為 1-5，變調後為：`,[`7-5`,`2-5`,`3-5`,`5-5`],0,`前字「溫」第 1 聲變為第 7 聲，故為 7-5。`],
+  [3,`83. 「這雙鞋仔是新的」中的「鞋仔」，原調為 5-2，變調後為：`,[`7-2`,`1-2`,`3-2`,`2-2`],0,`前字「鞋」第 5 聲變為第 7 聲，故為 7-2。`],
+  [3,`84. 「台灣野球真出名」中的「野球」，原調為 2-5，變調後為：`,[`1-5`,`7-5`,`3-5`,`5-5`],0,`前字「野」第 2 聲變為第 1 聲，故為 1-5。`],
+  [3,`85. 「離阮兜上近的郵局佇佗位」中的「郵局」，原調為 5-8，變調後為：`,[`7-8`,`1-8`,`3-8`,`2-8`],0,`前字「郵」第 5 聲變為第 7 聲，尾字「局」維持 8 聲，故為 7-8。`],
+
+  [4,`86. 台語俚語「蜈蚣、蛤仔、蛇，三不服」，其中「蜈蚣」的原調與變調分別為何？`,[`原調 5-1，變調 7-1`,`原調 1-1，變調 7-1`,`原調 2-3，變調 1-3`,`原調 5-5，變調 7-5`],0,`「蜈蚣 giâ-kang」原調為 5-1，前字 5 變 7 後為 7-1。`],
+  [4,`87. 俚語「閹雞趁鳳飛」，其比喻意思為何？`,[`飛黃騰達`,`如同東施效顰一樣不自量力地想模仿別人`,`勤勞能補拙`,`家雞變鳳凰`],1,`「閹雞趁鳳飛」比喻不自量力、盲目模仿比自己高明者。`],
+  [4,`88. 諺語「一日徙栽，三日徛黃 (Tsi̍t ji̍t suá-tsai, sann ji̍t khiā-n̂g)」，其引申含意為何？`,[`勸人多運動健身`,`勸人不要沒有定性，否則很難有所成就`,`說明種樹需要多澆水`,`比喻歲月流逝極快`],1,`頻繁移栽使植物枯黃，引申勸人做人做事要有定性，勿三心二意。`],
+  [4,`89. 俚語「尪仔頭袂䆀 (Ang-á-thâu bē-bái)」，意思是：`,[`玩具頭像很貴`,`五官長相不錯`,`頭髮剪得很漂亮`,`性格非常古怪`],1,`「尪仔頭」比喻人的頭臉五官，「袂䆀」即不錯、很好看。`],
+  [4,`90. 描述夜市小吃「蚵仔麵線大碗閣滿墘」，其中「蚵仔」的原調與變調為何？`,[`原調 5-2，變調 7-2`,`原調 1-2，變調 7-2`,`原調 3-2，變調 1-2`,`原調 2-2，變調 1-2`],0,`「蚵 ô」為第 5 聲、「仔 á」為第 2 聲，原調 5-2，變調後為 7-2。`],
+  [4,`91. 俚語「烏鴉喙，糊瘰瘰，見講見對」，其中「烏鴉」的原調與變調為何？`,[`原調 1-1，變調 7-1`,`原調 5-1，變調 7-1`,`原調 2-1，變調 1-1`,`原調 3-1，變調 2-1`],0,`「烏 oo」與「鴉 a」皆為第 1 聲，原調 1-1，前字 1 變 7 後為 7-1。`],
+  [4,`92. 台語詞彙「規嚾規黨」意思是指：`,[`規規矩矩`,`成群結黨`,`孤單一人`,`零零落落`],1,`「規嚾規黨」形容很多人聚集在一起、成群結黨的樣子。`],
+  [4,`93. 台語「歪哥食錢 (tsia̍h-tsînn)」的「歪哥」原調為 1-1，變調為 7-1，其意思是指：`,[`貪污不法獲取財物`,`錢包掉到地上`,`努力賺錢`,`借錢不還`],0,`「歪哥」指品行不正、徇私舞弊，「食錢」指收受賄賂貪污。`],
+  [4,`94. 台語「覕相揣」是指哪一種傳統童玩遊戲？`,[`捉迷藏`,`踢毽子`,`抽籤`,`打彈珠`],0,`「覕 bih」為躲藏，「相揣 sio-tshuē」為互相尋找，即捉迷藏。`],
+  [4,`95. 台語「田蛤仔」又稱為「水雞 (tsuí-ke/tsuí-kue)」，其入聲韻母屬於：`,[`p入聲`,`t入聲`,`k入聲`,`h入聲`],2,`題幹問「田蛤仔」之「蛤 (kap/kak)」或依試卷對應分類為 k 入聲（註：試卷正解選項為 C：k 入聲）。`],
+  [4,`96. 「翕相機」的「翕 (hip)」發音時，結尾唇形應如何？`,[`嘴唇收束合起來`,`嘴巴張大`,`舌頭向後縮`,`吐出大量氣流`],0,`「翕 hip」以 -p 結尾，發音最後嘴唇必須收束合起來。`],
+  [4,`97. 「遏手把」是指哪一種競技活動？`,[`比手腕（壓手霸）`,`握手`,`划船`,`打排球`],0,`「遏手把 at-tshiú-pá」即兩人肘部撐桌比腕力的「壓手霸」。`],
+  [4,`98. 「沃水」的「沃 (at/ok/uak)」在簡報中屬於哪種入聲韻母類別？`,[`k入聲`,`p入聲`,`t入聲`,`h入聲`],2,`依簡報入聲範例分類，「沃水」屬於 t 入聲（at）。`],
+  [4,`99. 下列哪一個詞彙包含「聲化韻母」？`,[`徛黃 (khiā-n̂g)`,`溫泉 (un-tsuân)`,`烏鴉 (oo-a)`,`鴨仔 (ah-á)`],0,`「黃 n̂g」由 ng 單獨成韻，屬於聲化韻母。`],
+  [4,`100. 「聽著第一聲愛寫第二聲」是台語羅馬字聽寫訓練時的何種對應規則？`,[`由聽到的變調音推回原調`,`聲母轉換規則`,`入聲改調規則`,`輕聲標記規則`],0,`台語標調以「本調（原調）」為準，故須由聽到的變調第 1 聲反推寫回原調第 2 聲。`]
+];
+
+const APP_STATE = {
+  filterCat: `all`,
+  currentIndex: 0,
+  answers: {}, // { questionIdx(0..99): selectedOptionIdx(0..3) }
+  selectedInitial: `p`,
+  selectedFinalCat: `vowel`,
+  selectedTone: `5`,
+  selectedWordIdx: 0
+};
+
+function getFilteredIndices() {
+  const f = APP_STATE.filterCat;
+  const list = [];
+  for (let i = 0; i < QUIZ_BANK.length; i++) {
+    if (f === `all`) {
+      list.push(i);
+    } else if (f === `wrong`) {
+      const ans = APP_STATE.answers[i];
+      if (ans === undefined || ans !== QUIZ_BANK[i][3]) list.push(i);
+    } else {
+      if (String(QUIZ_BANK[i][0]) === f) list.push(i);
+    }
+  }
+  return list;
+}
+
+function renderInitialsGrid(catFilter) {
+  const grid = document.getElementById(`consonant-grid`);
+  if (!grid) return;
+  const items = catFilter === `all`
+    ? INITIALS_DATA
+    : INITIALS_DATA.filter(item => item.cat === catFilter);
+  grid.innerHTML = items.map(item => {
+    const active = item.sym === APP_STATE.selectedInitial ? ` is-selected` : ``;
+    return `<button type="button" class="phoneme-btn${active}" onclick="selectInitial('${item.sym}')">
+      <span class="sym">${item.sym}</span>
+      <span class="cat-tag">${item.cat}</span>
+    </button>`;
+  }).join(``);
+}
+
+function filterInitials(cat, btn) {
+  document.querySelectorAll(`.consonant-filter-row .btn-chip`).forEach(b => b.classList.remove(`is-active`));
+  if (btn) btn.classList.add(`is-active`);
+  const list = cat === `all` ? INITIALS_DATA : INITIALS_DATA.filter(i => i.cat === cat);
+  if (list.length > 0 && !list.some(i => i.sym === APP_STATE.selectedInitial)) {
+    APP_STATE.selectedInitial = list[0].sym;
+  }
+  renderInitialsGrid(cat);
+  updateInitialInspector();
+  saveAppState();
+}
+
+function selectInitial(sym) {
+  APP_STATE.selectedInitial = sym;
+  const activeChip = document.querySelector(`.consonant-filter-row .btn-chip.is-active`);
+  const label = activeChip ? activeChip.textContent : `全部`;
+  const cat = label.startsWith(`全部`) ? `all` : label.split(` `)[0];
+  renderInitialsGrid(cat);
+  updateInitialInspector();
+  saveAppState();
+}
+
+function updateInitialInspector() {
+  const item = INITIALS_DATA.find(i => i.sym === APP_STATE.selectedInitial) || INITIALS_DATA[0];
+  const symEl = document.getElementById(`ins-sym`);
+  const catEl = document.getElementById(`ins-cat`);
+  const grpEl = document.getElementById(`ins-group`);
+  const mechEl = document.getElementById(`ins-mech`);
+  const airEl = document.getElementById(`ins-air`);
+  const noteEl = document.getElementById(`ins-note`);
+  if (symEl) symEl.textContent = item.sym;
+  if (catEl) catEl.textContent = item.cat;
+  if (grpEl) grpEl.textContent = item.group;
+  if (mechEl) mechEl.textContent = item.mech;
+  if (airEl) airEl.textContent = item.air;
+  if (noteEl) noteEl.textContent = item.note;
+}
+
+function selectFinalCategory(catKey, btn) {
+  APP_STATE.selectedFinalCat = catKey;
+  document.querySelectorAll(`.finals-cat-btn`).forEach(b => b.classList.remove(`is-active`));
+  if (btn) btn.classList.add(`is-active`);
+  const data = FINALS_DATA[catKey];
+  if (!data) return;
+  const titleEl = document.getElementById(`fc-detail-title`);
+  const descEl = document.getElementById(`fc-detail-desc`);
+  const tagsEl = document.getElementById(`fc-tags`);
+  const tipEl = document.getElementById(`fc-detail-tip`);
+  if (titleEl) titleEl.textContent = data.title;
+  if (descEl) descEl.textContent = data.desc;
+  if (tagsEl) {
+    tagsEl.innerHTML = data.tags.map(tag => `<span class="final-pill${tag.k ? ` is-key` : ``}">${tag.t}</span>`).join(``);
+  }
+  if (tipEl) tipEl.textContent = data.tip;
+  saveAppState();
+}
+
+function selectSandhiTone(toneKey, btn) {
+  APP_STATE.selectedTone = toneKey;
+  document.querySelectorAll(`.tone-node-btn`).forEach(b => b.classList.remove(`is-active`));
+  if (btn) {
+    btn.classList.add(`is-active`);
+  } else {
+    document.querySelectorAll(`.tone-node-btn`).forEach(b => {
+      if (b.getAttribute(`onclick`) && b.getAttribute(`onclick`).includes(`'${toneKey}'`)) {
+        b.classList.add(`is-active`);
+      }
+    });
+  }
+  const info = SANDHI_INFO[toneKey] || SANDHI_INFO[`5`];
+  const flowEl = document.getElementById(`sandhi-flow`);
+  const expEl = document.getElementById(`sandhi-explain`);
+  const dicEl = document.getElementById(`sandhi-dictation`);
+  if (flowEl) flowEl.textContent = info.title;
+  if (expEl) expEl.textContent = info.desc;
+  if (dicEl) dicEl.textContent = info.hint;
+
+  // Update SVG ring highlight
+  const ringMap = { '5': '7', '7': '3', '3': '2', '2': '1', '1': '7' };
+  [`5`, `7`, `3`, `2`, `1`].forEach(n => {
+    const circle = document.getElementById(`node-${n}`);
+    const text = document.getElementById(`text-${n}`);
+    const edge = document.getElementById(`edge-${n}`);
+    if (circle) circle.classList.remove(`is-source`, `is-target`);
+    if (text) text.classList.remove(`is-light`);
+    if (edge) {
+      edge.classList.remove(`is-active`);
+      edge.setAttribute(`marker-end`, `url(#arrowHead)`);
+    }
+  });
+  if (ringMap[toneKey]) {
+    const tgt = ringMap[toneKey];
+    const sC = document.getElementById(`node-${toneKey}`);
+    const sT = document.getElementById(`text-${toneKey}`);
+    const tC = document.getElementById(`node-${tgt}`);
+    const tT = document.getElementById(`text-${tgt}`);
+    const eL = document.getElementById(`edge-${toneKey}`);
+    if (sC) sC.classList.add(`is-source`);
+    if (sT) sT.classList.add(`is-light`);
+    if (tC) tC.classList.add(`is-target`);
+    if (tT) tT.classList.add(`is-light`);
+    if (eL) {
+      eL.classList.add(`is-active`);
+      eL.setAttribute(`marker-end`, `url(#arrowHeadActive)`);
+    }
+  }
+  saveAppState();
+}
+
+function renderWordExamples() {
+  const grid = document.getElementById(`a-word-grid`);
+  if (!grid) return;
+  grid.innerHTML = WORD_EXAMPLES.map((item, idx) => {
+    const cls = idx === APP_STATE.selectedWordIdx ? ` is-active` : ``;
+    return `<button type="button" class="a-word-btn${cls}" onclick="selectWordExample(${idx})">
+      <strong>${item.w}</strong>
+      <span class="mono-cell">${item.orig}→${item.sandhi}</span>
+    </button>`;
+  }).join(``);
+  const current = WORD_EXAMPLES[APP_STATE.selectedWordIdx] || WORD_EXAMPLES[0];
+  const detailEl = document.getElementById(`a-word-detail`);
+  if (detailEl) {
+    detailEl.textContent = `【${current.w}】原調：${current.orig} ｜ 變調後：${current.sandhi} ｜ ${current.note}`;
+  }
+}
+
+function selectWordExample(idx) {
+  APP_STATE.selectedWordIdx = idx;
+  renderWordExamples();
+  saveAppState();
+}
+
+function updateQuizStats() {
+  const total = QUIZ_BANK.length;
+  let answered = 0;
+  let correct = 0;
+  for (let i = 0; i < total; i++) {
+    if (APP_STATE.answers[i] !== undefined) {
+      answered++;
+      if (APP_STATE.answers[i] === QUIZ_BANK[i][3]) correct++;
+    }
+  }
+  const wrong = answered - correct;
+  const rate = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+  const pEl = document.getElementById(`stat-progress`);
+  const cEl = document.getElementById(`stat-correct`);
+  const wEl = document.getElementById(`stat-wrong`);
+  const rEl = document.getElementById(`stat-rate`);
+  if (pEl) pEl.textContent = `${answered} / ${total}`;
+  if (cEl) cEl.textContent = String(correct);
+  if (wEl) wEl.textContent = String(wrong);
+  if (rEl) rEl.textContent = `${rate}%`;
+}
+
+function renderQuizMatrix() {
+  const grid = document.getElementById(`matrix-grid`);
+  const countLabel = document.getElementById(`matrix-count-label`);
+  if (!grid) return;
+  const list = getFilteredIndices();
+  if (countLabel) countLabel.textContent = `${list.length} 題`;
+  grid.innerHTML = list.map(qIdx => {
+    const ans = APP_STATE.answers[qIdx];
+    let cls = `q-dot`;
+    if (qIdx === APP_STATE.currentIndex) cls += ` is-current`;
+    if (ans !== undefined) {
+      cls += ans === QUIZ_BANK[qIdx][3] ? ` is-ok` : ` is-bad`;
+    }
+    return `<button type="button" class="${cls}" onclick="jumpToQuestion(${qIdx})">${qIdx + 1}</button>`;
+  }).join(``);
+}
+
+function renderCurrentQuestion() {
+  const host = document.getElementById(`question-host`);
+  if (!host) return;
+  const list = getFilteredIndices();
+  if (list.length === 0) {
+    host.innerHTML = `<div class="empty-state">
+      <h3 style="margin:0 0 var(--space-xs) 0;">此篩選條件目前沒有題目</h3>
+      <p style="margin:0 0 var(--space-md) 0; color:var(--on-surface-variant);">您已答對所有篩選題目！可切回全部題庫繼續複習，或重設作答紀錄。</p>
+      <button type="button" class="btn-primary" onclick="resetFilterToAll()">返回全部 100 題</button>
+    </div>`;
+    renderQuizMatrix();
+    updateQuizStats();
+    return;
+  }
+  if (!list.includes(APP_STATE.currentIndex)) {
+    APP_STATE.currentIndex = list[0];
+  }
+  const qIdx = APP_STATE.currentIndex;
+  const q = QUIZ_BANK[qIdx];
+  const userAns = APP_STATE.answers[qIdx];
+  const isAnswered = userAns !== undefined;
+  const letters = [`A`, `B`, `C`, `D`];
+
+  const optionsHtml = q[2].map((optText, oIdx) => {
+    let cls = `option-btn`;
+    if (isAnswered) {
+      if (oIdx === q[3]) cls += ` is-correct`;
+      else if (oIdx === userAns) cls += ` is-wrong`;
+    }
+    return `<button type="button" class="${cls}" ${isAnswered ? `disabled` : ``} onclick="submitQuizAnswer(${qIdx}, ${oIdx})">
+      <span class="opt-key">(${letters[oIdx]})</span>
+      <span>${optText}</span>
+    </button>`;
+  }).join(``);
+
+  let feedbackHtml = ``;
+  if (isAnswered) {
+    const isOk = userAns === q[3];
+    const fbCls = isOk ? `feedback-banner is-correct` : `feedback-banner is-wrong`;
+    const head = isOk ? `答對了！正確答案為 (${letters[q[3]]})` : `答錯了，正確答案應為 (${letters[q[3]]})`;
+    feedbackHtml = `<div class="${fbCls}" role="status">
+      <strong>${head}</strong>
+      <p style="margin:var(--space-xs) 0 0 0;">${q[4]}</p>
+    </div>`;
+  }
+
+  const posInList = list.indexOf(qIdx);
+  const prevIdx = posInList > 0 ? list[posInList - 1] : null;
+  const nextIdx = posInList < list.length - 1 ? list[posInList + 1] : null;
+
+  host.innerHTML = `<div class="question-card">
+    <div class="q-header">
+      <span class="q-num">第 ${qIdx + 1} / 100 題</span>
+      <span class="q-cat">${QUIZ_CATS[q[0]]}</span>
+    </div>
+    <p class="q-prompt">${q[1]}</p>
+    <div class="options-stack">${optionsHtml}</div>
+    ${feedbackHtml}
+    <div class="q-nav-row">
+      <button type="button" class="btn-secondary" ${prevIdx === null ? `disabled` : ``} onclick="jumpToQuestion(${prevIdx !== null ? prevIdx : qIdx})">上一題</button>
+      <span class="field-label">單元進度 ${posInList + 1} / ${list.length}</span>
+      <button type="button" class="btn-primary" ${nextIdx === null ? `disabled` : ``} onclick="jumpToQuestion(${nextIdx !== null ? nextIdx : qIdx})">下一題</button>
+    </div>
+  </div>`;
+
+  renderQuizMatrix();
+  updateQuizStats();
+}
+
+function submitQuizAnswer(qIdx, optIdx) {
+  APP_STATE.answers[qIdx] = optIdx;
+  renderCurrentQuestion();
+  saveAppState();
+}
+
+function jumpToQuestion(qIdx) {
+  APP_STATE.currentIndex = qIdx;
+  renderCurrentQuestion();
+  saveAppState();
+}
+
+function applyQuizFilter() {
+  const sel = document.getElementById(`quiz-cat-select`);
+  if (!sel) return;
+  APP_STATE.filterCat = sel.value;
+  const list = getFilteredIndices();
+  if (list.length > 0) APP_STATE.currentIndex = list[0];
+  renderCurrentQuestion();
+  saveAppState();
+}
+
+function resetFilterToAll() {
+  APP_STATE.filterCat = `all`;
+  const sel = document.getElementById(`quiz-cat-select`);
+  if (sel) sel.value = `all`;
+  APP_STATE.currentIndex = 0;
+  renderCurrentQuestion();
+  saveAppState();
+}
+
+function resetQuizProgress(btn) {
+  if (btn.dataset.armed !== `true`) {
+    btn.dataset.armed = `true`;
+    btn.textContent = `再按一次確認清除`;
+    return;
+  }
+  btn.dataset.armed = `false`;
+  btn.textContent = `重設測驗紀錄`;
+  APP_STATE.answers = {};
+  APP_STATE.currentIndex = 0;
+  renderCurrentQuestion();
+  saveAppState();
+}
+
+function exportQuizReport() {
+  const letters = [`A`, `B`, `C`, `D`];
+  const rows = [`題號,單元,題目,您的作答,正確答案,結果`];
+  for (let i = 0; i < QUIZ_BANK.length; i++) {
+    const q = QUIZ_BANK[i];
+    const ans = APP_STATE.answers[i];
+    const userTxt = ans !== undefined ? letters[ans] : `未作答`;
+    const corrTxt = letters[q[3]];
+    const resTxt = ans === undefined ? `未答` : (ans === q[3] ? `正確` : `錯誤`);
+    const safePrompt = q[1].replace(/"/g, `""`);
+    rows.push(`${i + 1},"${QUIZ_CATS[q[0]]}","${safePrompt}",${userTxt},${corrTxt},${resTxt}`);
+  }
+  const csvContent = `\uFEFF` + rows.join(`\n`);
+  if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+    window.notebookAppApi.triggerFileDownload({
+      content: csvContent,
+      contentType: `text/csv`,
+      encoding: `UTF-8`,
+      filename: `tailo_100_quiz_report.csv`
+    });
+  } else {
+    const blob = new Blob([csvContent], { type: `text/csv;charset=utf-8;` });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement(`a`);
+    a.href = url;
+    a.download = `tailo_100_quiz_report.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+}
+
+async function saveAppState() {
+  if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+    try {
+      await window.notebookAppApi.setAppState({
+        filterCat: APP_STATE.filterCat,
+        currentIndex: APP_STATE.currentIndex,
+        answers: APP_STATE.answers,
+        selectedInitial: APP_STATE.selectedInitial,
+        selectedFinalCat: APP_STATE.selectedFinalCat,
+        selectedTone: APP_STATE.selectedTone,
+        selectedWordIdx: APP_STATE.selectedWordIdx
+      });
+    } catch (e) {}
+  }
+}
+
+async function initApp() {
+  if (window.lucide && typeof window.lucide.createIcons === `function`) {
+    window.lucide.createIcons();
+  }
+  if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+    try {
+      const saved = await window.notebookAppApi.getAppState();
+      if (saved && typeof saved === `object`) {
+        if (saved.filterCat) APP_STATE.filterCat = saved.filterCat;
+        if (typeof saved.currentIndex === `number`) APP_STATE.currentIndex = saved.currentIndex;
+        if (saved.answers && typeof saved.answers === `object`) APP_STATE.answers = saved.answers;
+        if (saved.selectedInitial) APP_STATE.selectedInitial = saved.selectedInitial;
+        if (saved.selectedFinalCat) APP_STATE.selectedFinalCat = saved.selectedFinalCat;
+        if (saved.selectedTone) APP_STATE.selectedTone = saved.selectedTone;
+        if (typeof saved.selectedWordIdx === `number`) APP_STATE.selectedWordIdx = saved.selectedWordIdx;
+      }
+    } catch (e) {}
+  }
+
+  const sel = document.getElementById(`quiz-cat-select`);
+  if (sel) sel.value = APP_STATE.filterCat;
+
+  renderInitialsGrid(`all`);
+  updateInitialInspector();
+  selectFinalCategory(APP_STATE.selectedFinalCat, document.querySelectorAll(`.finals-cat-btn`)[[`vowel`, `nasalized`, `nasal`, `entering`, `syllabic`].indexOf(APP_STATE.selectedFinalCat)]);
+  selectSandhiTone(APP_STATE.selectedTone);
+  renderWordExamples();
+  renderCurrentQuestion();
+
+  if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+    window.notebookAppApi.notifyAppReady();
+  }
+}
+
+document.addEventListener(`DOMContentLoaded`, initApp);
+</script>
+</body>
+</html>
